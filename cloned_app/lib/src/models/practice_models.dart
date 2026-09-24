@@ -127,7 +127,7 @@ class JournalEntry {
 
   factory JournalEntry.fromMap(Map<String, dynamic> map) => JournalEntry(
         id: map['id'] as int?,
-        mood: map['mood'] as String? ?? 'ember',
+        mood: map['mood'] as String? ?? 'lichen',
         prompt: map['prompt'] as String? ?? '',
         body: map['body'] as String? ?? '',
         createdAt: map['createdAt'] as String? ?? '',

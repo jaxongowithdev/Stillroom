@@ -17,43 +17,43 @@ void main() {
   test('journal survives a map round trip', () {
     const entry = JournalEntry(
       id: 2,
-      mood: 'fog',
-      prompt: 'Where did the breath fog the glass?',
+      mood: 'glaze',
+      prompt: 'Where did the breath catch in the bisque?',
       body: 'The right hip after the walk.',
       createdAt: '2026-09-24T10:00:00.000',
     );
     final back = JournalEntry.fromMap(entry.toMap());
-    expect(back.mood, 'fog');
+    expect(back.mood, 'glaze');
     expect(back.body, entry.body);
   });
 
-  test('preferences default to a dark fourteen-minute unwind', () {
+  test('preferences default to a light eighteen-minute ease glaze', () {
     final prefs = UserPreferences();
-    expect(prefs.aim, 'unwind');
-    expect(prefs.minutes, 14);
-    expect(prefs.theme, 'dark');
+    expect(prefs.glaze, 'ease');
+    expect(prefs.minutes, 18);
+    expect(prefs.theme, 'light');
     expect(prefs.showOnboarding, isTrue);
-    expect(UserPreferences.fromMap(prefs.toMap()).bodyFeel, 'even');
+    expect(UserPreferences.fromMap(prefs.toMap()).bisque, 'even');
   });
 
   test('engine avoids repeating the last session when it can', () {
     const last = PracticeLog(
-      sessionId: 'dawn-wick',
-      title: 'Dawn wick',
-      minutes: 14,
+      sessionId: 'morning-bisque',
+      title: 'Morning bisque',
+      minutes: 18,
       completedAt: '2026-09-24T07:00:00.000',
     );
-    final pick = PracticeEngine.pickLamp(
-      prefs: UserPreferences(aim: 'unwind', minutes: 14, bodyFeel: 'tender'),
+    final pick = PracticeEngine.pickBatch(
+      prefs: UserPreferences(glaze: 'ease', minutes: 18, bisque: 'soft'),
       recent: const [last],
       now: DateTime(2026, 9, 24, 7, 30),
     );
-    expect(pick.id, isNot('dawn-wick'));
+    expect(pick.id, isNot('morning-bisque'));
   });
 
   test('night hour leans toward rest', () {
-    final pick = PracticeEngine.pickLamp(
-      prefs: UserPreferences(aim: 'sleep', minutes: 14, bodyFeel: 'tender'),
+    final pick = PracticeEngine.pickBatch(
+      prefs: UserPreferences(glaze: 'sleep', minutes: 18, bisque: 'soft'),
       recent: const [],
       now: DateTime(2026, 9, 24, 22, 10),
     );
@@ -61,9 +61,9 @@ void main() {
   });
 
   test('hour greeting changes across the day', () {
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 8)), 'Dawn wick');
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 14)), 'High glass');
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 19)), 'Lamp hour');
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 23)), 'Ember night');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 8)), 'Morning bisque');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 14)), 'High kiln');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 19)), 'Dusk ash');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 23)), 'Night flue');
   });
 }

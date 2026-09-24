@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../database/storage_manager.dart';
 import '../models/user_preferences.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/brume_chrome.dart';
+import '../widgets/kiln_chrome.dart';
 import 'dashboard_view.dart';
 
 class UserScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _UserScreenState extends State<UserScreen> {
         _ready = true;
       });
     } catch (e, st) {
-      debugPrint('Brume Lamp boot: $e\n$st');
+      debugPrint('Lichen Kiln boot: $e\n$st');
       setState(() {
         _prefs = UserPreferences();
         _ready = true;
@@ -47,20 +47,18 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var mode = ThemeMode.dark;
+    var mode = ThemeMode.light;
     switch (_prefs?.theme) {
-      case 'light':
-        mode = ThemeMode.light;
+      case 'dark':
+        mode = ThemeMode.dark;
         break;
       case 'system':
         mode = ThemeMode.system;
         break;
-      default:
-        mode = ThemeMode.dark;
     }
 
     return MaterialApp(
-      title: 'Brume Lamp',
+      title: 'Lichen Kiln',
       debugShowCheckedModeBanner: false,
       theme: VisualTheme.lightTheme,
       darkTheme: VisualTheme.darkTheme,
@@ -80,23 +78,16 @@ class _Boot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: VisualTheme.night,
+      backgroundColor: VisualTheme.umber,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 14,
-              height: 28,
-              decoration: BoxDecoration(
-                color: VisualTheme.lamp,
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
+            const VentPair(t: 0.55, color: VisualTheme.lichen),
             const SizedBox(height: 22),
-            Text('BRUME LAMP', style: VisualTheme.micro(12, color: VisualTheme.fog)),
-            const SizedBox(height: 10),
-            Text('The wick is catching…', style: VisualTheme.body(15, color: VisualTheme.fog)),
+            Text('LICHEN KILN', style: VisualTheme.micro(11, color: VisualTheme.lichen)),
+            const SizedBox(height: 8),
+            Text('Warming the first batch…', style: VisualTheme.body(15, color: VisualTheme.sand)),
           ],
         ),
       ),
@@ -114,15 +105,15 @@ class WelcomeView extends StatefulWidget {
 
 class _WelcomeViewState extends State<WelcomeView> {
   int _page = 0;
-  String _aim = 'unwind';
-  int _minutes = 14;
-  String _feel = 'even';
+  String _glaze = 'ease';
+  int _minutes = 18;
+  String _bisque = 'even';
 
   Future<void> _finish() async {
     final storage = StorageManager.instance;
     final current = await storage.getPreferences();
     await storage.savePreferences(
-      current.copyWith(aim: _aim, minutes: _minutes, bodyFeel: _feel, showOnboarding: false),
+      current.copyWith(glaze: _glaze, minutes: _minutes, bisque: _bisque, showOnboarding: false),
     );
     widget.onFinished();
   }
@@ -132,55 +123,55 @@ class _WelcomeViewState extends State<WelcomeView> {
     final ink = VisualTheme.inkOf(context);
     final muted = VisualTheme.mutedOf(context);
     return Scaffold(
-      body: NightWash(
+      body: SandWash(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(28, 32, 28, 24),
+            padding: const EdgeInsets.fromLTRB(22, 24, 22, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('BRUME LAMP', style: VisualTheme.micro(11, color: VisualTheme.lamp)),
+                Text('LICHEN KILN', style: VisualTheme.micro(11, color: VisualTheme.lichen)),
                 const Spacer(),
                 if (_page == 0) ...[
-                  Text('A lamp you\ncan dim.', style: VisualTheme.display(40, color: ink)),
-                  const SizedBox(height: 18),
+                  Text('A kiln\nyou can sit with.', style: VisualTheme.display(36, color: ink)),
+                  const SizedBox(height: 16),
                   Text(
                     'Personalized sessions, breathing, sleep, and a private journal — fully offline. No account. No cloud.',
                     style: VisualTheme.body(16, color: muted),
                   ),
                 ] else if (_page == 1) ...[
-                  Text('What should the lamp hold?', style: VisualTheme.display(32, color: ink)),
-                  const SizedBox(height: 20),
+                  Text('What should the glaze hold?', style: VisualTheme.display(30, color: ink)),
+                  const SizedBox(height: 16),
                   ...[
-                    ('unwind', 'Unwind', 'Unhook the day from the shoulders.'),
-                    ('sleep', 'Sleep', 'A lantern you can set down in bed.'),
-                    ('stretch', 'Stretch', 'Hips, spine, a window unknot.'),
-                    ('sit', 'Sit', 'Count, park a worry, hear the room.'),
-                  ].map((g) => _Pill(label: g.$2, detail: g.$3, selected: _aim == g.$1, onTap: () => setState(() => _aim = g.$1))),
+                    ('ease', 'Ease', 'Unhook the day from the shoulders.'),
+                    ('sleep', 'Sleep', 'A firing you can set down in ash.'),
+                    ('stretch', 'Stretch', 'Hips, spine, a shelf unknot.'),
+                    ('sit', 'Sit', 'Count, park a worry, hear the loft.'),
+                  ].map((g) => _Pot(label: g.$2, detail: g.$3, selected: _glaze == g.$1, onTap: () => setState(() => _glaze = g.$1))),
                 ] else if (_page == 2) ...[
-                  Text('How many minutes, most days?', style: VisualTheme.display(32, color: ink)),
-                  const SizedBox(height: 20),
+                  Text('How many minutes?', style: VisualTheme.display(30, color: ink)),
+                  const SizedBox(height: 16),
                   ...VisualTheme.minuteChoices.map(
-                    (m) => _Pill(
+                    (m) => _Pot(
                       label: '$m minutes',
-                      detail: m == 8 ? 'A glass of four, a short sit.' : m == 14 ? 'A full wick or a body lantern.' : 'Room for dusk ember.',
+                      detail: m == 12 ? 'Four vents, a short sit.' : m == 18 ? 'A full batch or a body scan.' : 'Room for dusk ash.',
                       selected: _minutes == m,
                       onTap: () => setState(() => _minutes = m),
                     ),
                   ),
                 ] else ...[
-                  Text('How does the body feel lately?', style: VisualTheme.display(32, color: ink)),
-                  const SizedBox(height: 20),
+                  Text('How does the bisque feel?', style: VisualTheme.display(30, color: ink)),
+                  const SizedBox(height: 16),
                   ...[
-                    ('tender', 'Tender', 'Keep strong shapes off the menu.'),
-                    ('even', 'Even', 'Most days, a middle path.'),
-                    ('ready', 'Ready', 'Hills yesterday are welcome.'),
-                  ].map((g) => _Pill(label: g.$2, detail: g.$3, selected: _feel == g.$1, onTap: () => setState(() => _feel = g.$1))),
+                    ('soft', 'Soft', 'Keep strong shapes off the shelf.'),
+                    ('even', 'Even', 'Most days, a middle firing.'),
+                    ('fired', 'Fired', 'Hills yesterday are welcome.'),
+                  ].map((g) => _Pot(label: g.$2, detail: g.$3, selected: _bisque == g.$1, onTap: () => setState(() => _bisque = g.$1))),
                 ],
                 const Spacer(),
                 Row(
                   children: [
-                    Text('${_page + 1}  /  4', style: VisualTheme.micro(10, color: muted)),
+                    Text('${_page + 1}  —  4', style: VisualTheme.micro(10, color: muted)),
                     const Spacer(),
                     FilledButton(
                       onPressed: () {
@@ -190,7 +181,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                           _finish();
                         }
                       },
-                      child: Text(_page < 3 ? 'Next' : 'Light the lamp'),
+                      child: Text(_page < 3 ? 'Next' : 'Enter the kiln'),
                     ),
                   ],
                 ),
@@ -203,37 +194,32 @@ class _WelcomeViewState extends State<WelcomeView> {
   }
 }
 
-class _Pill extends StatelessWidget {
+class _Pot extends StatelessWidget {
   final String label;
   final String detail;
   final bool selected;
   final VoidCallback onTap;
-  const _Pill({required this.label, required this.detail, required this.selected, required this.onTap});
+  const _Pot({required this.label, required this.detail, required this.selected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 8),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(22),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
+        borderRadius: potRadius,
+        child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: VisualTheme.panelOf(context),
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(
-              color: selected ? VisualTheme.lamp : Colors.transparent,
-              width: 1.4,
-            ),
+            color: VisualTheme.bisqueOf(context),
+            borderRadius: potRadius,
+            border: Border.all(color: selected ? VisualTheme.lichen : Colors.transparent, width: 2),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label, style: VisualTheme.heading(18, color: VisualTheme.inkOf(context))),
-              const SizedBox(height: 2),
+              Text(label, style: VisualTheme.heading(17, color: VisualTheme.inkOf(context))),
               Text(detail, style: VisualTheme.body(13, color: VisualTheme.mutedOf(context))),
             ],
           ),

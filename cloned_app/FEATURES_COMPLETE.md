@@ -1,9 +1,6 @@
-# Brume Lamp — feature set
+# Lichen Kiln — feature set
 
-- Onboarding: aim, minutes, body feel
-- Lamp teacher (on-device ranking)
-- Circular wick timer, fog-glass breath bar
-- Lessons reel + pose chimney
-- Pages: private journal
-- Nook: appearance, aim, minutes
-- Dark-first lamp theme
+- Right kiln rail: Hearth, Batch, Ash, Folio
+- On-device teacher, twin-vent breath
+- Pose shelf, private folio, flue settings
+- Sand bisque and night umber themes

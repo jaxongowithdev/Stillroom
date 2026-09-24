@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/practice_models.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/brume_chrome.dart';
+import '../widgets/kiln_chrome.dart';
 
 class PoseView extends StatelessWidget {
   final PoseCard pose;
@@ -13,17 +13,17 @@ class PoseView extends StatelessWidget {
     final muted = VisualTheme.mutedOf(context);
     return Scaffold(
       appBar: AppBar(title: Text(pose.name)),
-      body: NightWash(
+      body: SandWash(
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(24, 8, 24, 36),
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
           children: [
-            Text(pose.aka.toUpperCase(), style: VisualTheme.micro(10, color: VisualTheme.lamp)),
+            Text(pose.aka.toUpperCase(), style: VisualTheme.micro(9, color: VisualTheme.lichen)),
             const SizedBox(height: 8),
-            Text(pose.name, style: VisualTheme.display(34, color: ink)),
-            const SizedBox(height: 24),
-            _Block(title: 'Setup', body: pose.setup, ink: ink, muted: muted),
-            _Block(title: 'Breath', body: pose.breath, ink: ink, muted: muted),
-            _Block(title: 'If this', body: pose.ifThis, ink: ink, muted: muted),
+            Text(pose.name, style: VisualTheme.display(32, color: ink)),
+            const SizedBox(height: 18),
+            _Pot(title: 'Setup', body: pose.setup, ink: ink, muted: muted),
+            _Pot(title: 'Breath', body: pose.breath, ink: ink, muted: muted),
+            _Pot(title: 'If this', body: pose.ifThis, ink: ink, muted: muted),
           ],
         ),
       ),
@@ -31,30 +31,27 @@ class PoseView extends StatelessWidget {
   }
 }
 
-class _Block extends StatelessWidget {
+class _Pot extends StatelessWidget {
   final String title;
   final String body;
   final Color ink;
   final Color muted;
-  const _Block({required this.title, required this.body, required this.ink, required this.muted});
+  const _Pot({required this.title, required this.body, required this.ink, required this.muted});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(18),
-        decoration: BoxDecoration(
-          color: VisualTheme.panelOf(context),
-          borderRadius: BorderRadius.circular(VisualTheme.r),
-        ),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(color: VisualTheme.bisqueOf(context), borderRadius: potRadius),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title.toUpperCase(), style: VisualTheme.micro(10, color: muted)),
-            const SizedBox(height: 8),
-            Text(body, style: VisualTheme.body(16, color: ink)),
+            Text(title.toUpperCase(), style: VisualTheme.micro(8, color: muted)),
+            const SizedBox(height: 6),
+            Text(body, style: VisualTheme.body(15, color: ink)),
           ],
         ),
       ),

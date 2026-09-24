@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import '../database/storage_manager.dart';
 import '../models/user_preferences.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/brume_chrome.dart';
+import '../widgets/kiln_chrome.dart';
 
-class NookView extends StatefulWidget {
+class FlueView extends StatefulWidget {
   final VoidCallback onPrefsChanged;
-  const NookView({super.key, required this.onPrefsChanged});
+  const FlueView({super.key, required this.onPrefsChanged});
 
   @override
-  State<NookView> createState() => _NookViewState();
+  State<FlueView> createState() => _FlueViewState();
 }
 
-class _NookViewState extends State<NookView> {
+class _FlueViewState extends State<FlueView> {
   UserPreferences? _prefs;
 
   @override
@@ -37,65 +37,49 @@ class _NookViewState extends State<NookView> {
     final prefs = _prefs;
     final muted = VisualTheme.mutedOf(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Nook')),
-      body: NightWash(
+      appBar: AppBar(title: const Text('Flue')),
+      body: SandWash(
         child: prefs == null
             ? const Center(child: CircularProgressIndicator())
             : ListView(
-                padding: const EdgeInsets.fromLTRB(24, 8, 24, 36),
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
                 children: [
                   Text(
-                    'The nook is local. Aim, minutes, and appearance never leave the device. No account. No cloud.',
+                    'The flue is local. Glaze, minutes, and appearance never leave the device. No account. No cloud.',
                     style: VisualTheme.body(15, color: muted),
                   ),
-                  const SizedBox(height: 22),
+                  const SizedBox(height: 18),
                   _Section(
                     title: 'Appearance',
                     children: [
-                      for (final t in ['dark', 'light', 'system'])
-                        _Pick(
-                          label: t[0].toUpperCase() + t.substring(1),
-                          selected: prefs.theme == t,
-                          onTap: () => _save(prefs.copyWith(theme: t)),
-                        ),
+                      for (final t in ['light', 'dark', 'system'])
+                        _Pick(label: t[0].toUpperCase() + t.substring(1), selected: prefs.theme == t, onTap: () => _save(prefs.copyWith(theme: t))),
                     ],
                   ),
                   _Section(
-                    title: 'The lamp holds',
+                    title: 'The glaze holds',
                     children: [
-                      for (final g in VisualTheme.aims)
-                        _Pick(
-                          label: VisualTheme.aimLabel(g),
-                          selected: prefs.aim == g,
-                          onTap: () => _save(prefs.copyWith(aim: g)),
-                        ),
+                      for (final g in VisualTheme.glazes)
+                        _Pick(label: VisualTheme.glazeLabel(g), selected: prefs.glaze == g, onTap: () => _save(prefs.copyWith(glaze: g))),
                     ],
                   ),
                   _Section(
                     title: 'Minutes',
                     children: [
                       for (final m in VisualTheme.minuteChoices)
-                        _Pick(
-                          label: '$m minutes',
-                          selected: prefs.minutes == m,
-                          onTap: () => _save(prefs.copyWith(minutes: m)),
-                        ),
+                        _Pick(label: '$m minutes', selected: prefs.minutes == m, onTap: () => _save(prefs.copyWith(minutes: m))),
                     ],
                   ),
                   _Section(
-                    title: 'Body lately',
+                    title: 'Bisque lately',
                     children: [
-                      for (final b in VisualTheme.bodyFeels)
-                        _Pick(
-                          label: b[0].toUpperCase() + b.substring(1),
-                          selected: prefs.bodyFeel == b,
-                          onTap: () => _save(prefs.copyWith(bodyFeel: b)),
-                        ),
+                      for (final b in VisualTheme.bisques)
+                        _Pick(label: b[0].toUpperCase() + b.substring(1), selected: prefs.bisque == b, onTap: () => _save(prefs.copyWith(bisque: b))),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8),
                   Text(
-                    'There is no account, no login, no cloud sync, and no remote AI. Sessions, breath patterns, pages, and logs live in brume_lamp.db on this phone.',
+                    'There is no account, no login, no cloud sync, and no remote AI. Sessions, breath patterns, folio pages, and logs live in lichen_kiln.db on this phone.',
                     style: VisualTheme.body(14, color: muted),
                   ),
                 ],
@@ -113,12 +97,12 @@ class _Section extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 18),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title.toUpperCase(), style: VisualTheme.micro(10, color: VisualTheme.lamp)),
-          const SizedBox(height: 10),
+          Text(title.toUpperCase(), style: VisualTheme.micro(9, color: VisualTheme.lichen)),
+          const SizedBox(height: 8),
           ...children,
         ],
       ),
@@ -135,17 +119,17 @@ class _Pick extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.only(bottom: 6),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: potRadius,
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: VisualTheme.panelOf(context),
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: selected ? VisualTheme.lamp : Colors.transparent, width: 1.4),
+            color: VisualTheme.bisqueOf(context),
+            borderRadius: potRadius,
+            border: Border.all(color: selected ? VisualTheme.lichen : Colors.transparent, width: 2),
           ),
           child: Text(label, style: VisualTheme.body(16, color: VisualTheme.inkOf(context))),
         ),

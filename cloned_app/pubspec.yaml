@@ -1,6 +1,6 @@
 name: user_screen
-description: "Brume Lamp - An on-device yoga and meditation teacher. Personalized sessions, breathing, sleep, and a private journal — fully offline. No account. No cloud."
-version: 1.3.0+1
+description: "Lichen Kiln - An on-device yoga and meditation teacher. Personalized sessions, breathing, sleep, and a private journal — fully offline. No account. No cloud."
+version: 1.7.0+1
 
 environment:
   sdk: '>=3.4.0 <4.0.0'

@@ -6,7 +6,7 @@ import 'package:user_screen/user_screen.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('Brume Lamp boots into a MaterialApp', (tester) async {
+  testWidgets('Lichen Kiln boots into a MaterialApp', (tester) async {
     await tester.pumpWidget(const UserScreen());
     await tester.pump();
 

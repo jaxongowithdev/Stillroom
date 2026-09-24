@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import '../widgets/brume_chrome.dart';
-import 'lamp_view.dart';
-import 'lessons_view.dart';
-import 'nook_view.dart';
-import 'pages_view.dart';
+import '../utils/visual_theme.dart';
+import '../widgets/kiln_chrome.dart';
+import 'ash_view.dart';
+import 'batch_view.dart';
+import 'flue_view.dart';
+import 'folio_view.dart';
+import 'hearth_view.dart';
 
 class DashboardView extends StatefulWidget {
   final VoidCallback onPrefsChanged;
@@ -19,28 +21,43 @@ class DashboardViewState extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NightWash(
-        child: Column(
+      body: SandWash(
+        child: Row(
           children: [
             Expanded(
-              child: IndexedStack(
-                index: _index,
+              child: Column(
                 children: [
-                  LampView(
-                    onOpenNook: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => NookView(onPrefsChanged: widget.onPrefsChanged),
-                        ),
-                      );
-                    },
+                  SafeArea(
+                    bottom: false,
+                    right: false,
+                    child: KilnTitle(
+                      kicker: 'Lichen Kiln',
+                      title: KilnRail.items[_index].$2,
+                      trailing: IconButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => FlueView(onPrefsChanged: widget.onPrefsChanged)),
+                          );
+                        },
+                        icon: Icon(Icons.tune, color: VisualTheme.mutedOf(context)),
+                      ),
+                    ),
                   ),
-                  const LessonsView(),
-                  const PagesView(),
+                  Expanded(
+                    child: IndexedStack(
+                      index: _index,
+                      children: const [
+                        HearthView(),
+                        BatchView(),
+                        AshView(),
+                        FolioView(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-            WickBar(index: _index, onSelect: (i) => setState(() => _index = i)),
+            KilnRail(index: _index, onSelect: (i) => setState(() => _index = i)),
           ],
         ),
       ),

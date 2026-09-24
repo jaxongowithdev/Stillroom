@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/practice_models.dart';
 import '../utils/visual_theme.dart';
+import '../widgets/kiln_chrome.dart';
 
-/// Horizontal glass that fills and empties — not a concentric ring.
+/// Two kiln vents that rise on heat and fall on cool — not a circle, bar, diamond, hexagon, or stacked stones.
 class BreathView extends StatefulWidget {
   final BreathPattern pattern;
   const BreathView({super.key, required this.pattern});
@@ -70,13 +71,13 @@ class _BreathViewState extends State<BreathView> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     final ink = VisualTheme.inkOf(context);
     final muted = VisualTheme.mutedOf(context);
-    final fill = _current.label.toLowerCase() == 'fill';
-    final empty = _current.label.toLowerCase() == 'empty';
+    final heat = _current.label.toLowerCase() == 'heat';
+    final cool = _current.label.toLowerCase() == 'cool';
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.pattern.name.toUpperCase(), style: VisualTheme.micro(11, color: VisualTheme.lamp))),
+      appBar: AppBar(title: Text(widget.pattern.name.toUpperCase(), style: VisualTheme.micro(10, color: VisualTheme.lichen))),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(28, 12, 28, 28),
+        padding: const EdgeInsets.fromLTRB(28, 12, 28, 24),
         child: Column(
           children: [
             Text(widget.pattern.teaching, style: VisualTheme.body(15, color: muted)),
@@ -84,43 +85,23 @@ class _BreathViewState extends State<BreathView> with SingleTickerProviderStateM
             AnimatedBuilder(
               animation: _ctrl,
               builder: (context, _) {
-                double widthFactor;
-                if (fill) {
-                  widthFactor = _ctrl.value;
-                } else if (empty) {
-                  widthFactor = 1 - _ctrl.value;
+                double t;
+                if (heat) {
+                  t = _ctrl.value;
+                } else if (cool) {
+                  t = 1 - _ctrl.value;
                 } else {
-                  widthFactor = _current.label.toLowerCase() == 'wait' ? 0.12 : 1;
+                  t = _current.label.toLowerCase() == 'rest' ? 0.2 : 0.85;
                 }
-                return Container(
-                  height: 54,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: VisualTheme.panelOf(context),
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  alignment: Alignment.centerLeft,
-                  child: FractionallySizedBox(
-                    widthFactor: widthFactor.clamp(0.04, 1),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: VisualTheme.lamp.withValues(alpha: 0.85),
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                    ),
-                  ),
-                );
+                return VentPair(t: t, color: VisualTheme.lichen.withValues(alpha: 0.35 + t * 0.55));
               },
             ),
             const SizedBox(height: 28),
-            Text(_current.label.toUpperCase(), style: VisualTheme.micro(14, color: ink)),
+            Text(_current.label.toUpperCase(), style: VisualTheme.micro(13, color: ink)),
             const SizedBox(height: 8),
             Text('Round $_round of ${widget.pattern.rounds}', style: VisualTheme.body(14, color: muted)),
             const Spacer(),
-            FilledButton(
-              onPressed: _toggle,
-              child: Text(_running ? 'Hold' : 'Fog the glass'),
-            ),
+            FilledButton(onPressed: _toggle, child: Text(_running ? 'Hold' : 'Fire the vents')),
           ],
         ),
       ),

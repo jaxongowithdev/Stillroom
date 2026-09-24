@@ -1,46 +1,46 @@
 class UserPreferences {
-  final String theme; // light, dark, system
-  final String aim; // unwind, sleep, stretch, sit
+  final String theme;
+  final String glaze; // ease, sleep, stretch, sit
   final int minutes;
-  final String bodyFeel; // tender, even, ready
+  final String bisque; // soft, even, fired
   final bool showOnboarding;
 
   UserPreferences({
-    this.theme = 'dark',
-    this.aim = 'unwind',
-    this.minutes = 14,
-    this.bodyFeel = 'even',
+    this.theme = 'light',
+    this.glaze = 'ease',
+    this.minutes = 18,
+    this.bisque = 'even',
     this.showOnboarding = true,
   });
 
   Map<String, dynamic> toMap() => {
         'theme': theme,
-        'aim': aim,
+        'glaze': glaze,
         'minutes': minutes,
-        'bodyFeel': bodyFeel,
+        'bisque': bisque,
         'showOnboarding': showOnboarding ? 1 : 0,
       };
 
   factory UserPreferences.fromMap(Map<String, dynamic> map) => UserPreferences(
-        theme: map['theme'] as String? ?? 'dark',
-        aim: map['aim'] as String? ?? 'unwind',
-        minutes: map['minutes'] as int? ?? 14,
-        bodyFeel: map['bodyFeel'] as String? ?? 'even',
+        theme: map['theme'] as String? ?? 'light',
+        glaze: map['glaze'] as String? ?? 'ease',
+        minutes: map['minutes'] as int? ?? 18,
+        bisque: map['bisque'] as String? ?? 'even',
         showOnboarding: (map['showOnboarding'] as int? ?? 1) == 1,
       );
 
   UserPreferences copyWith({
     String? theme,
-    String? aim,
+    String? glaze,
     int? minutes,
-    String? bodyFeel,
+    String? bisque,
     bool? showOnboarding,
   }) {
     return UserPreferences(
       theme: theme ?? this.theme,
-      aim: aim ?? this.aim,
+      glaze: glaze ?? this.glaze,
       minutes: minutes ?? this.minutes,
-      bodyFeel: bodyFeel ?? this.bodyFeel,
+      bisque: bisque ?? this.bisque,
       showOnboarding: showOnboarding ?? this.showOnboarding,
     );
   }

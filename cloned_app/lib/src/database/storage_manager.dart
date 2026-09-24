@@ -11,7 +11,7 @@ class StorageManager {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('brume_lamp.db');
+    _database = await _initDB('lichen_kiln.db');
     return _database!;
   }
 
@@ -25,10 +25,10 @@ class StorageManager {
     await db.execute('''
       CREATE TABLE settings(
         id INTEGER PRIMARY KEY CHECK (id = 1),
-        theme TEXT NOT NULL DEFAULT 'dark',
-        aim TEXT NOT NULL DEFAULT 'unwind',
-        minutes INTEGER NOT NULL DEFAULT 14,
-        bodyFeel TEXT NOT NULL DEFAULT 'even',
+        theme TEXT NOT NULL DEFAULT 'light',
+        glaze TEXT NOT NULL DEFAULT 'ease',
+        minutes INTEGER NOT NULL DEFAULT 18,
+        bisque TEXT NOT NULL DEFAULT 'even',
         showOnboarding INTEGER NOT NULL DEFAULT 1
       )
     ''');

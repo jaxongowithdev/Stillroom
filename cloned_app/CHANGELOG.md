@@ -1,3 +1,3 @@
-## 1.3.0
+## 1.7.0
 
-Brume Lamp — night-first lamp UI, fog-glass breath, pages journal, on-device teacher.
+Lichen Kiln — sand kiln UI, right rail, twin-vent breath, on-device teacher.
