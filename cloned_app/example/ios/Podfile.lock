@@ -1,0 +1,25 @@
+PODS:
+  - Flutter (1.0.0)
+  - SDWebImage (5.18.12):
+    - SDWebImage/Core (= 5.18.12)
+  - SDWebImage/Core (5.18.12)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - SDWebImage (~> 5.18.0)
+
+SPEC REPOS:
+  trunk:
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  Flutter: 71a624a5bc0c04062bf19101d501e466baf2fb47
+  SDWebImage: 2d6d229046fea284d62e36bfb8ebe8287dfc5b10
+
+PODFILE CHECKSUM: d9dcc086da50ebed27174e68231bb3c3296fa95b
+
+COCOAPODS: 1.17.0
