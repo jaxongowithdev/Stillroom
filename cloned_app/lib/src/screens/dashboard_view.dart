@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/kiln_chrome.dart';
-import 'ash_view.dart';
-import 'batch_view.dart';
-import 'flue_view.dart';
-import 'folio_view.dart';
-import 'hearth_view.dart';
+import '../widgets/gesso_chrome.dart';
+import 'canvas_view.dart';
+import 'easel_view.dart';
+import 'primer_view.dart';
+import 'sketch_view.dart';
+import 'wash_view.dart';
 
 class DashboardView extends StatefulWidget {
   final VoidCallback onPrefsChanged;
@@ -21,43 +21,35 @@ class DashboardViewState extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SandWash(
-        child: Row(
+      body: GessoWash(
+        child: Column(
           children: [
+            SafeArea(
+              bottom: false,
+              child: AtticTitle(
+                kicker: 'Gesso Attic',
+                trailing: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => PrimerView(onPrefsChanged: widget.onPrefsChanged)),
+                    );
+                  },
+                  icon: Icon(Icons.border_color_outlined, color: VisualTheme.mutedOf(context)),
+                ),
+              ),
+            ),
+            AtticTabs(index: _index, onSelect: (i) => setState(() => _index = i)),
             Expanded(
-              child: Column(
-                children: [
-                  SafeArea(
-                    bottom: false,
-                    right: false,
-                    child: KilnTitle(
-                      kicker: 'Lichen Kiln',
-                      title: KilnRail.items[_index].$2,
-                      trailing: IconButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) => FlueView(onPrefsChanged: widget.onPrefsChanged)),
-                          );
-                        },
-                        icon: Icon(Icons.tune, color: VisualTheme.mutedOf(context)),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: IndexedStack(
-                      index: _index,
-                      children: const [
-                        HearthView(),
-                        BatchView(),
-                        AshView(),
-                        FolioView(),
-                      ],
-                    ),
-                  ),
+              child: IndexedStack(
+                index: _index,
+                children: const [
+                  EaselView(),
+                  CanvasView(),
+                  WashView(),
+                  SketchView(),
                 ],
               ),
             ),
-            KilnRail(index: _index, onSelect: (i) => setState(() => _index = i)),
           ],
         ),
       ),

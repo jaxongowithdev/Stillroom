@@ -11,7 +11,7 @@ class StorageManager {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('lichen_kiln.db');
+    _database = await _initDB('gesso_attic.db');
     return _database!;
   }
 
@@ -26,9 +26,9 @@ class StorageManager {
       CREATE TABLE settings(
         id INTEGER PRIMARY KEY CHECK (id = 1),
         theme TEXT NOT NULL DEFAULT 'light',
-        glaze TEXT NOT NULL DEFAULT 'ease',
-        minutes INTEGER NOT NULL DEFAULT 18,
-        bisque TEXT NOT NULL DEFAULT 'even',
+        wash TEXT NOT NULL DEFAULT 'ease',
+        minutes INTEGER NOT NULL DEFAULT 17,
+        tooth TEXT NOT NULL DEFAULT 'even',
         showOnboarding INTEGER NOT NULL DEFAULT 1
       )
     ''');

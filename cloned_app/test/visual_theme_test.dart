@@ -6,7 +6,7 @@ void main() {
   test('light and dark both build', () {
     expect(VisualTheme.lightTheme.brightness, Brightness.light);
     expect(VisualTheme.darkTheme.brightness, Brightness.dark);
-    expect(VisualTheme.lightTheme.scaffoldBackgroundColor, VisualTheme.sand);
+    expect(VisualTheme.lightTheme.scaffoldBackgroundColor, VisualTheme.gesso);
   });
 
   test('kind tints differ', () {
@@ -14,9 +14,9 @@ void main() {
     expect(colours.length, 5);
   });
 
-  test('glaze labels are human', () {
-    expect(VisualTheme.glazeLabel('sleep'), 'Sleep');
-    expect(VisualTheme.glazeLabel('sit'), 'Sit');
-    expect(VisualTheme.glazeLabel('ease'), 'Ease');
+  test('wash labels are human', () {
+    expect(VisualTheme.washLabel('sleep'), 'Sleep');
+    expect(VisualTheme.washLabel('sit'), 'Sit');
+    expect(VisualTheme.washLabel('ease'), 'Ease');
   });
 }

@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../database/storage_manager.dart';
 import '../models/practice_models.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/kiln_chrome.dart';
 
-/// Cue in the middle, timer top-right, horizontal kiln-shelf of step tiles at the bottom.
+/// Huge step index, cue in the middle, a filling gesso bar for remaining time.
 class SessionPlayerView extends StatefulWidget {
   final PracticeSession session;
   final bool dim;
@@ -89,87 +88,75 @@ class _SessionPlayerViewState extends State<SessionPlayerView> {
 
   @override
   Widget build(BuildContext context) {
-    final bg = widget.dim ? VisualTheme.night : VisualTheme.sandOf(context);
+    final bg = widget.dim ? VisualTheme.night : VisualTheme.gessoOf(context);
     final ink = widget.dim ? VisualTheme.nightInk : VisualTheme.inkOf(context);
     final muted = ink.withValues(alpha: 0.62);
+    final total = _step.seconds;
+    final t = total == 0 ? 0.0 : (1 - (_left / total)).clamp(0.0, 1.0);
 
     return Scaffold(
       backgroundColor: bg,
       appBar: AppBar(
         backgroundColor: bg,
         foregroundColor: ink,
-        title: Text(widget.session.title.toUpperCase(), style: VisualTheme.micro(10, color: VisualTheme.lichen)),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16, top: 14),
-            child: Text(_done ? '' : _clock(_left), style: VisualTheme.heading(18, color: VisualTheme.lichen)),
-          ),
-        ],
+        title: Text(widget.session.title.toUpperCase(), style: VisualTheme.micro(10, color: VisualTheme.rose)),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+        padding: const EdgeInsets.fromLTRB(22, 8, 22, 24),
         child: _done
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Spacer(),
-                  Text('The kiln is still.', style: VisualTheme.display(32, color: ink)),
+                  Text('The attic is still.', style: VisualTheme.display(32, color: ink)),
                   const SizedBox(height: 12),
                   Text('${widget.session.title} is filed in your private log. Nothing left this phone.', style: VisualTheme.body(16, color: muted)),
                   const Spacer(),
-                  FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Back to the hearth')),
+                  FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Back to the easel')),
                 ],
               )
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('VENT ${_index + 1}  —  ${widget.session.steps.length}', style: VisualTheme.micro(10, color: muted)),
-                  const Spacer(),
-                  Text(_step.title, style: VisualTheme.display(34, color: ink)),
+                  Text(
+                    '${(_index + 1).toString().padLeft(2, '0')}  /  ${widget.session.steps.length.toString().padLeft(2, '0')}',
+                    style: VisualTheme.display(48, color: VisualTheme.rose, w: FontWeight.w400),
+                  ),
                   const SizedBox(height: 12),
-                  Text(_step.cue, style: VisualTheme.body(17, color: muted)),
+                  Text(_step.title, style: VisualTheme.heading(22, color: ink)),
+                  const SizedBox(height: 10),
+                  Text(_step.cue, style: VisualTheme.body(16, color: muted)),
                   const Spacer(),
+                  Text(_clock(_left), style: VisualTheme.micro(12, color: muted)),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    height: 8,
+                    child: Stack(
+                      children: [
+                        Container(color: ink.withValues(alpha: 0.1)),
+                        FractionallySizedBox(
+                          widthFactor: t,
+                          child: Container(color: VisualTheme.prussian),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   Row(
                     children: [
                       Expanded(
-                        child: FilledButton(onPressed: _toggle, child: Text(_running ? 'Hold' : 'Fire')),
+                        child: FilledButton(onPressed: _toggle, child: Text(_running ? 'Hold' : 'Prime')),
                       ),
                       const SizedBox(width: 8),
-                      OutlinedButton(
+                      TextButton(
                         onPressed: () {
                           _timer?.cancel();
                           setState(() => _running = false);
                           _advance();
                         },
-                        child: const Text('Skip'),
+                        child: const Text('SKIP'),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 56,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: widget.session.steps.length,
-                      separatorBuilder: (context, index) => const SizedBox(width: 6),
-                      itemBuilder: (context, i) {
-                        final on = i == _index;
-                        return Container(
-                          width: 44,
-                          decoration: BoxDecoration(
-                            color: on
-                                ? VisualTheme.lichen
-                                : ink.withValues(alpha: i < _index ? 0.28 : 0.08),
-                            borderRadius: potRadius,
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            '${i + 1}',
-                            style: VisualTheme.heading(14, color: on ? Colors.white : ink),
-                          ),
-                        );
-                      },
-                    ),
                   ),
                 ],
               ),

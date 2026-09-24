@@ -5,18 +5,18 @@ import '../database/storage_manager.dart';
 import '../models/practice_models.dart';
 import '../models/user_preferences.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/kiln_chrome.dart';
+import '../widgets/gesso_chrome.dart';
 import 'breath_view.dart';
 import 'session_player_view.dart';
 
-class HearthView extends StatefulWidget {
-  const HearthView({super.key});
+class EaselView extends StatefulWidget {
+  const EaselView({super.key});
 
   @override
-  State<HearthView> createState() => _HearthViewState();
+  State<EaselView> createState() => _EaselViewState();
 }
 
-class _HearthViewState extends State<HearthView> {
+class _EaselViewState extends State<EaselView> {
   UserPreferences? _prefs;
   PracticeSession? _pick;
   int _streak = 0;
@@ -37,7 +37,7 @@ class _HearthViewState extends State<HearthView> {
     if (!mounted) return;
     setState(() {
       _prefs = prefs;
-      _pick = PracticeEngine.pickBatch(prefs: prefs, recent: logs);
+      _pick = PracticeEngine.pickCanvas(prefs: prefs, recent: logs);
       _streak = streak;
       _week = week;
     });
@@ -50,24 +50,24 @@ class _HearthViewState extends State<HearthView> {
     final pick = _pick;
 
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 28),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
       children: [
-        Text(PracticeEngine.hourGreeting(now).toUpperCase(), style: VisualTheme.micro(9, color: VisualTheme.lichen)),
+        Text(PracticeEngine.hourGreeting(now).toUpperCase(), style: VisualTheme.micro(9, color: VisualTheme.rose)),
         const SizedBox(height: 8),
         Text(PracticeEngine.lessonOfDay(now), style: VisualTheme.body(16, color: muted)),
         const SizedBox(height: 16),
         Row(
           children: [
-            _PotStat(label: 'Batch', value: '$_streak d'),
+            _Stat(label: 'Days', value: '$_streak'),
             const SizedBox(width: 8),
-            _PotStat(label: 'Week', value: '$_week min'),
+            _Stat(label: 'Week', value: '$_week'),
             const SizedBox(width: 8),
-            _PotStat(label: 'Heat', value: '${_prefs?.minutes ?? 18}'),
+            _Stat(label: 'Min', value: '${_prefs?.minutes ?? 17}'),
           ],
         ),
         const SizedBox(height: 16),
         if (pick != null)
-          KilnCard(
+          CanvasCard(
             session: pick,
             onTap: () async {
               await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SessionPlayerView(session: pick)));
@@ -87,17 +87,17 @@ class _HearthViewState extends State<HearthView> {
                   await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SessionPlayerView(session: pick)));
                   _load();
                 },
-          child: const Text('Fire this session'),
+          child: const Text('Prime this session'),
         ),
         const SizedBox(height: 22),
-        Text('BREATH VENTS', style: VisualTheme.micro(9, color: VisualTheme.lichen)),
+        Text('BREATH FRAMES', style: VisualTheme.micro(9, color: VisualTheme.rose)),
         const SizedBox(height: 10),
         ...PracticeLibrary.patterns.map(
           (p) => Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: ListTile(
-              tileColor: VisualTheme.bisqueOf(context),
-              shape: const RoundedRectangleBorder(borderRadius: potRadius),
+              tileColor: VisualTheme.canvasOf(context),
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
               title: Text(p.name, style: VisualTheme.heading(16, color: VisualTheme.inkOf(context))),
               subtitle: Text('${p.rounds} rounds', style: VisualTheme.body(12, color: muted)),
               onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => BreathView(pattern: p))),
@@ -109,25 +109,22 @@ class _HearthViewState extends State<HearthView> {
   }
 }
 
-class _PotStat extends StatelessWidget {
+class _Stat extends StatelessWidget {
   final String label;
   final String value;
-  const _PotStat({required this.label, required this.value});
+  const _Stat({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: VisualTheme.bisqueOf(context),
-          borderRadius: potRadius,
-        ),
+        color: VisualTheme.canvasOf(context),
         child: Column(
           children: [
             Text(label.toUpperCase(), style: VisualTheme.micro(7, color: VisualTheme.mutedOf(context))),
             const SizedBox(height: 4),
-            Text(value, style: VisualTheme.heading(15, color: VisualTheme.inkOf(context))),
+            Text(value, style: VisualTheme.heading(16, color: VisualTheme.inkOf(context))),
           ],
         ),
       ),

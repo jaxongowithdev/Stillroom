@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import '../data/library.dart';
 import '../models/practice_models.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/kiln_chrome.dart';
+import '../widgets/gesso_chrome.dart';
 import 'pose_view.dart';
 import 'session_player_view.dart';
 
-class BatchView extends StatefulWidget {
-  const BatchView({super.key});
+class CanvasView extends StatefulWidget {
+  const CanvasView({super.key});
 
   @override
-  State<BatchView> createState() => _BatchViewState();
+  State<CanvasView> createState() => _CanvasViewState();
 }
 
-class _BatchViewState extends State<BatchView> {
+class _CanvasViewState extends State<CanvasView> {
   String _filter = 'all';
 
   @override
@@ -24,20 +24,20 @@ class _BatchViewState extends State<BatchView> {
         : PracticeLibrary.sessions.where((s) => s.kind == _filter).toList();
 
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 28),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
       children: [
         Wrap(
-          spacing: 6,
-          runSpacing: 6,
+          spacing: 0,
+          runSpacing: 0,
           children: [
             for (final f in ['all', 'yoga', 'breath', 'sit', 'mobility'])
               GestureDetector(
                 onTap: () => setState(() => _filter = f),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
-                    color: _filter == f ? VisualTheme.umber : VisualTheme.bisqueOf(context),
-                    borderRadius: BorderRadius.circular(20),
+                    color: _filter == f ? VisualTheme.prussian : VisualTheme.canvasOf(context),
+                    border: Border(right: BorderSide(color: VisualTheme.rule, width: 1)),
                   ),
                   child: Text(
                     f.toUpperCase(),
@@ -51,14 +51,14 @@ class _BatchViewState extends State<BatchView> {
         ...sessions.map(
           (s) => Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: KilnCard(
+            child: CanvasCard(
               session: s,
               onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => SessionPlayerView(session: s))),
             ),
           ),
         ),
         const SizedBox(height: 8),
-        Text('POSE SHELF', style: VisualTheme.micro(9, color: VisualTheme.lichen)),
+        Text('POSE FRAMES', style: VisualTheme.micro(9, color: VisualTheme.rose)),
         const SizedBox(height: 8),
         Text('Short lessons without a timer — setup, breath, and what to do if a joint objects.', style: VisualTheme.body(14, color: muted)),
         const SizedBox(height: 10),
@@ -75,10 +75,10 @@ class _PoseRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.only(bottom: 1),
       child: ListTile(
-        tileColor: VisualTheme.bisqueOf(context),
-        shape: const RoundedRectangleBorder(borderRadius: potRadius),
+        tileColor: VisualTheme.canvasOf(context),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
         title: Text(pose.name, style: VisualTheme.heading(16, color: VisualTheme.inkOf(context))),
         subtitle: Text(pose.aka, style: VisualTheme.body(12, color: VisualTheme.mutedOf(context))),
         onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => PoseView(pose: pose))),

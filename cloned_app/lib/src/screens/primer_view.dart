@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import '../database/storage_manager.dart';
 import '../models/user_preferences.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/kiln_chrome.dart';
+import '../widgets/gesso_chrome.dart';
 
-class FlueView extends StatefulWidget {
+class PrimerView extends StatefulWidget {
   final VoidCallback onPrefsChanged;
-  const FlueView({super.key, required this.onPrefsChanged});
+  const PrimerView({super.key, required this.onPrefsChanged});
 
   @override
-  State<FlueView> createState() => _FlueViewState();
+  State<PrimerView> createState() => _PrimerViewState();
 }
 
-class _FlueViewState extends State<FlueView> {
+class _PrimerViewState extends State<PrimerView> {
   UserPreferences? _prefs;
 
   @override
@@ -37,15 +37,15 @@ class _FlueViewState extends State<FlueView> {
     final prefs = _prefs;
     final muted = VisualTheme.mutedOf(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Flue')),
-      body: SandWash(
+      appBar: AppBar(title: const Text('Primer')),
+      body: GessoWash(
         child: prefs == null
             ? const Center(child: CircularProgressIndicator())
             : ListView(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
                 children: [
                   Text(
-                    'The flue is local. Glaze, minutes, and appearance never leave the device. No account. No cloud.',
+                    'The primer is local. Wash, minutes, and appearance never leave the device. No account. No cloud.',
                     style: VisualTheme.body(15, color: muted),
                   ),
                   const SizedBox(height: 18),
@@ -57,10 +57,10 @@ class _FlueViewState extends State<FlueView> {
                     ],
                   ),
                   _Section(
-                    title: 'The glaze holds',
+                    title: 'The wash holds',
                     children: [
-                      for (final g in VisualTheme.glazes)
-                        _Pick(label: VisualTheme.glazeLabel(g), selected: prefs.glaze == g, onTap: () => _save(prefs.copyWith(glaze: g))),
+                      for (final g in VisualTheme.washes)
+                        _Pick(label: VisualTheme.washLabel(g), selected: prefs.wash == g, onTap: () => _save(prefs.copyWith(wash: g))),
                     ],
                   ),
                   _Section(
@@ -71,15 +71,15 @@ class _FlueViewState extends State<FlueView> {
                     ],
                   ),
                   _Section(
-                    title: 'Bisque lately',
+                    title: 'Paper lately',
                     children: [
-                      for (final b in VisualTheme.bisques)
-                        _Pick(label: b[0].toUpperCase() + b.substring(1), selected: prefs.bisque == b, onTap: () => _save(prefs.copyWith(bisque: b))),
+                      for (final b in VisualTheme.teeth)
+                        _Pick(label: b[0].toUpperCase() + b.substring(1), selected: prefs.tooth == b, onTap: () => _save(prefs.copyWith(tooth: b))),
                     ],
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'There is no account, no login, no cloud sync, and no remote AI. Sessions, breath patterns, folio pages, and logs live in lichen_kiln.db on this phone.',
+                    'There is no account, no login, no cloud sync, and no remote AI. Sessions, breath patterns, sketch pages, and logs live in gesso_attic.db on this phone.',
                     style: VisualTheme.body(14, color: muted),
                   ),
                 ],
@@ -101,7 +101,7 @@ class _Section extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title.toUpperCase(), style: VisualTheme.micro(9, color: VisualTheme.lichen)),
+          Text(title.toUpperCase(), style: VisualTheme.micro(9, color: VisualTheme.rose)),
           const SizedBox(height: 8),
           ...children,
         ],
@@ -119,17 +119,17 @@ class _Pick extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.only(bottom: 4),
       child: InkWell(
         onTap: onTap,
-        borderRadius: potRadius,
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: VisualTheme.bisqueOf(context),
-            borderRadius: potRadius,
-            border: Border.all(color: selected ? VisualTheme.lichen : Colors.transparent, width: 2),
+            color: VisualTheme.canvasOf(context),
+            border: Border(
+              left: BorderSide(color: selected ? VisualTheme.prussian : Colors.transparent, width: 3),
+            ),
           ),
           child: Text(label, style: VisualTheme.body(16, color: VisualTheme.inkOf(context))),
         ),

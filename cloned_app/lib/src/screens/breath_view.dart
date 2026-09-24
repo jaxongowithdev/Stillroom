@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/practice_models.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/kiln_chrome.dart';
+import '../widgets/gesso_chrome.dart';
 
-/// Two kiln vents that rise on heat and fall on cool — not a circle, bar, diamond, hexagon, or stacked stones.
+/// A picture frame that grows on prime and shrinks on lift — not a circle, bar, diamond, hexagon, vents, or stones.
 class BreathView extends StatefulWidget {
   final BreathPattern pattern;
   const BreathView({super.key, required this.pattern});
@@ -71,11 +71,11 @@ class _BreathViewState extends State<BreathView> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     final ink = VisualTheme.inkOf(context);
     final muted = VisualTheme.mutedOf(context);
-    final heat = _current.label.toLowerCase() == 'heat';
-    final cool = _current.label.toLowerCase() == 'cool';
+    final prime = _current.label.toLowerCase() == 'prime';
+    final lift = _current.label.toLowerCase() == 'lift';
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.pattern.name.toUpperCase(), style: VisualTheme.micro(10, color: VisualTheme.lichen))),
+      appBar: AppBar(title: Text(widget.pattern.name.toUpperCase(), style: VisualTheme.micro(10, color: VisualTheme.rose))),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(28, 12, 28, 24),
         child: Column(
@@ -86,14 +86,22 @@ class _BreathViewState extends State<BreathView> with SingleTickerProviderStateM
               animation: _ctrl,
               builder: (context, _) {
                 double t;
-                if (heat) {
+                if (prime) {
                   t = _ctrl.value;
-                } else if (cool) {
+                } else if (lift) {
                   t = 1 - _ctrl.value;
                 } else {
-                  t = _current.label.toLowerCase() == 'rest' ? 0.2 : 0.85;
+                  t = _current.label.toLowerCase() == 'rest' ? 0.22 : 0.88;
                 }
-                return VentPair(t: t, color: VisualTheme.lichen.withValues(alpha: 0.35 + t * 0.55));
+                final w = 70 + t * 110;
+                final h = 88 + t * 90;
+                return SizedBox(
+                  width: w,
+                  height: h,
+                  child: CustomPaint(
+                    painter: FramePainter(VisualTheme.prussian.withValues(alpha: 0.35 + t * 0.55), stroke: 7),
+                  ),
+                );
               },
             ),
             const SizedBox(height: 28),
@@ -101,7 +109,7 @@ class _BreathViewState extends State<BreathView> with SingleTickerProviderStateM
             const SizedBox(height: 8),
             Text('Round $_round of ${widget.pattern.rounds}', style: VisualTheme.body(14, color: muted)),
             const Spacer(),
-            FilledButton(onPressed: _toggle, child: Text(_running ? 'Hold' : 'Fire the vents')),
+            FilledButton(onPressed: _toggle, child: Text(_running ? 'Hold' : 'Prime the frame')),
           ],
         ),
       ),

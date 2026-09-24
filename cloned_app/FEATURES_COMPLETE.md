@@ -1,6 +1,6 @@
-# Lichen Kiln — feature set
+# Gesso Attic — feature set
 
-- Right kiln rail: Hearth, Batch, Ash, Folio
-- On-device teacher, twin-vent breath
-- Pose shelf, private folio, flue settings
-- Sand bisque and night umber themes
+- Top underline rooms: Easel, Canvas, Wash, Sketch
+- On-device teacher, picture-frame breath
+- Pose frames, private sketchbook, primer settings
+- Gesso canvas and night attic themes

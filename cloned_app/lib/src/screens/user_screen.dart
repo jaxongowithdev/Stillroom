@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../database/storage_manager.dart';
 import '../models/user_preferences.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/kiln_chrome.dart';
+import '../widgets/gesso_chrome.dart';
 import 'dashboard_view.dart';
 
 class UserScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _UserScreenState extends State<UserScreen> {
         _ready = true;
       });
     } catch (e, st) {
-      debugPrint('Lichen Kiln boot: $e\n$st');
+      debugPrint('Gesso Attic boot: $e\n$st');
       setState(() {
         _prefs = UserPreferences();
         _ready = true;
@@ -58,7 +58,7 @@ class _UserScreenState extends State<UserScreen> {
     }
 
     return MaterialApp(
-      title: 'Lichen Kiln',
+      title: 'Gesso Attic',
       debugShowCheckedModeBanner: false,
       theme: VisualTheme.lightTheme,
       darkTheme: VisualTheme.darkTheme,
@@ -78,16 +78,20 @@ class _Boot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: VisualTheme.umber,
+      backgroundColor: VisualTheme.prussian,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const VentPair(t: 0.55, color: VisualTheme.lichen),
+            SizedBox(
+              width: 64,
+              height: 80,
+              child: CustomPaint(painter: FramePainter(VisualTheme.rose, stroke: 6)),
+            ),
             const SizedBox(height: 22),
-            Text('LICHEN KILN', style: VisualTheme.micro(11, color: VisualTheme.lichen)),
+            Text('GESSO ATTIC', style: VisualTheme.micro(11, color: VisualTheme.rose)),
             const SizedBox(height: 8),
-            Text('Warming the first batch…', style: VisualTheme.body(15, color: VisualTheme.sand)),
+            Text('Priming the first canvas…', style: VisualTheme.body(15, color: VisualTheme.gesso)),
           ],
         ),
       ),
@@ -105,15 +109,15 @@ class WelcomeView extends StatefulWidget {
 
 class _WelcomeViewState extends State<WelcomeView> {
   int _page = 0;
-  String _glaze = 'ease';
-  int _minutes = 18;
-  String _bisque = 'even';
+  String _wash = 'ease';
+  int _minutes = 17;
+  String _tooth = 'even';
 
   Future<void> _finish() async {
     final storage = StorageManager.instance;
     final current = await storage.getPreferences();
     await storage.savePreferences(
-      current.copyWith(glaze: _glaze, minutes: _minutes, bisque: _bisque, showOnboarding: false),
+      current.copyWith(wash: _wash, minutes: _minutes, tooth: _tooth, showOnboarding: false),
     );
     widget.onFinished();
   }
@@ -123,55 +127,55 @@ class _WelcomeViewState extends State<WelcomeView> {
     final ink = VisualTheme.inkOf(context);
     final muted = VisualTheme.mutedOf(context);
     return Scaffold(
-      body: SandWash(
+      body: GessoWash(
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(22, 24, 22, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('LICHEN KILN', style: VisualTheme.micro(11, color: VisualTheme.lichen)),
+                Text('GESSO ATTIC', style: VisualTheme.micro(11, color: VisualTheme.rose)),
                 const Spacer(),
                 if (_page == 0) ...[
-                  Text('A kiln\nyou can sit with.', style: VisualTheme.display(36, color: ink)),
+                  Text('An attic\nyou can prime.', style: VisualTheme.display(36, color: ink)),
                   const SizedBox(height: 16),
                   Text(
                     'Personalized sessions, breathing, sleep, and a private journal — fully offline. No account. No cloud.',
                     style: VisualTheme.body(16, color: muted),
                   ),
                 ] else if (_page == 1) ...[
-                  Text('What should the glaze hold?', style: VisualTheme.display(30, color: ink)),
+                  Text('What should the wash hold?', style: VisualTheme.display(30, color: ink)),
                   const SizedBox(height: 16),
                   ...[
                     ('ease', 'Ease', 'Unhook the day from the shoulders.'),
-                    ('sleep', 'Sleep', 'A firing you can set down in ash.'),
-                    ('stretch', 'Stretch', 'Hips, spine, a shelf unknot.'),
-                    ('sit', 'Sit', 'Count, park a worry, hear the loft.'),
-                  ].map((g) => _Pot(label: g.$2, detail: g.$3, selected: _glaze == g.$1, onTap: () => setState(() => _glaze = g.$1))),
+                    ('sleep', 'Sleep', 'A wash you can set down in bed.'),
+                    ('stretch', 'Stretch', 'Hips, spine, an attic unknot.'),
+                    ('sit', 'Sit', 'Count, park a worry, hear the rafters.'),
+                  ].map((g) => _Frame(label: g.$2, detail: g.$3, selected: _wash == g.$1, onTap: () => setState(() => _wash = g.$1))),
                 ] else if (_page == 2) ...[
                   Text('How many minutes?', style: VisualTheme.display(30, color: ink)),
                   const SizedBox(height: 16),
                   ...VisualTheme.minuteChoices.map(
-                    (m) => _Pot(
+                    (m) => _Frame(
                       label: '$m minutes',
-                      detail: m == 12 ? 'Four vents, a short sit.' : m == 18 ? 'A full batch or a body scan.' : 'Room for dusk ash.',
+                      detail: m == 11 ? 'Four frames, a short sit.' : m == 17 ? 'A full canvas or a body scan.' : 'Room for dusk wash.',
                       selected: _minutes == m,
                       onTap: () => setState(() => _minutes = m),
                     ),
                   ),
                 ] else ...[
-                  Text('How does the bisque feel?', style: VisualTheme.display(30, color: ink)),
+                  Text('How does the paper feel?', style: VisualTheme.display(30, color: ink)),
                   const SizedBox(height: 16),
                   ...[
-                    ('soft', 'Soft', 'Keep strong shapes off the shelf.'),
-                    ('even', 'Even', 'Most days, a middle firing.'),
-                    ('fired', 'Fired', 'Hills yesterday are welcome.'),
-                  ].map((g) => _Pot(label: g.$2, detail: g.$3, selected: _bisque == g.$1, onTap: () => setState(() => _bisque = g.$1))),
+                    ('fine', 'Fine', 'Keep strong shapes off the canvas.'),
+                    ('even', 'Even', 'Most days, a middle wash.'),
+                    ('coarse', 'Coarse', 'Hills yesterday are welcome.'),
+                  ].map((g) => _Frame(label: g.$2, detail: g.$3, selected: _tooth == g.$1, onTap: () => setState(() => _tooth = g.$1))),
                 ],
                 const Spacer(),
                 Row(
                   children: [
-                    Text('${_page + 1}  —  4', style: VisualTheme.micro(10, color: muted)),
+                    Text('${_page + 1}  ·  4', style: VisualTheme.micro(10, color: muted)),
                     const Spacer(),
                     FilledButton(
                       onPressed: () {
@@ -181,7 +185,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                           _finish();
                         }
                       },
-                      child: Text(_page < 3 ? 'Next' : 'Enter the kiln'),
+                      child: Text(_page < 3 ? 'Next' : 'Enter the attic'),
                     ),
                   ],
                 ),
@@ -194,12 +198,12 @@ class _WelcomeViewState extends State<WelcomeView> {
   }
 }
 
-class _Pot extends StatelessWidget {
+class _Frame extends StatelessWidget {
   final String label;
   final String detail;
   final bool selected;
   final VoidCallback onTap;
-  const _Pot({required this.label, required this.detail, required this.selected, required this.onTap});
+  const _Frame({required this.label, required this.detail, required this.selected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -207,14 +211,14 @@ class _Pot extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8),
       child: InkWell(
         onTap: onTap,
-        borderRadius: potRadius,
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: VisualTheme.bisqueOf(context),
-            borderRadius: potRadius,
-            border: Border.all(color: selected ? VisualTheme.lichen : Colors.transparent, width: 2),
+            color: VisualTheme.canvasOf(context),
+            border: Border(
+              left: BorderSide(color: selected ? VisualTheme.prussian : Colors.transparent, width: 3),
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

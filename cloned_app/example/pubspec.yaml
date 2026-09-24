@@ -1,7 +1,7 @@
-name: lichen_kiln_example
-description: "Lichen Kiln - On-device yoga and rest teacher"
+name: gesso_attic_example
+description: "Gesso Attic - On-device yoga and rest teacher"
 publish_to: 'none'
-version: 1.7.0+1
+version: 1.8.0+1
 environment:
   sdk: ^3.8.0
 

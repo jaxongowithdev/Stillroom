@@ -3,7 +3,7 @@ import '../models/user_preferences.dart';
 import 'library.dart';
 
 class PracticeEngine {
-  static PracticeSession pickBatch({
+  static PracticeSession pickCanvas({
     required UserPreferences prefs,
     required List<PracticeLog> recent,
     DateTime? now,
@@ -14,8 +14,8 @@ class PracticeEngine {
 
     var pool = PracticeLibrary.sessions.where((s) {
       final fitsTime = s.minutes <= prefs.minutes + 10;
-      final fitsBisque = prefs.bisque != 'soft' || s.level != 'fired';
-      return fitsTime && fitsBisque;
+      final fitsTooth = prefs.tooth != 'fine' || s.level != 'coarse';
+      return fitsTime && fitsTooth;
     }).toList();
     if (pool.isEmpty) pool = List.of(PracticeLibrary.sessions);
 
@@ -25,35 +25,35 @@ class PracticeEngine {
 
   static int _score(PracticeSession s, UserPreferences prefs, int hour, Set<String> used) {
     var n = 0;
-    if (s.aims.contains(prefs.glaze)) n += 5;
-    if (s.level == prefs.bisque) n += 3;
+    if (s.aims.contains(prefs.wash)) n += 5;
+    if (s.level == prefs.tooth) n += 3;
     if ((s.minutes - prefs.minutes).abs() <= 2) n += 2;
     if (hour < 11 && s.id.contains('morning')) n += 3;
     if (hour >= 20 && (s.kind == 'sleep' || s.aims.contains('sleep'))) n += 4;
     if (hour >= 11 && hour < 17 && s.kind == 'mobility') n += 3;
-    if (prefs.glaze == 'sleep' && s.kind == 'sleep') n += 4;
-    if (prefs.glaze == 'sit' && (s.kind == 'sit' || s.kind == 'breath')) n += 3;
+    if (prefs.wash == 'sleep' && s.kind == 'sleep') n += 4;
+    if (prefs.wash == 'sit' && (s.kind == 'sit' || s.kind == 'breath')) n += 3;
     if (used.contains(s.id)) n -= 6;
     return n;
   }
 
   static String hourGreeting(DateTime now) {
     final h = now.hour;
-    if (h < 11) return 'Morning bisque';
-    if (h < 17) return 'High kiln';
-    if (h < 21) return 'Dusk ash';
-    return 'Night flue';
+    if (h < 11) return 'Morning prime';
+    if (h < 17) return 'High attic';
+    if (h < 21) return 'Dusk wash';
+    return 'Night gesso';
   }
 
   static String lessonOfDay(DateTime now) {
     const lessons = [
-      'The cool is the teacher. Let the heat be ordinary.',
+      'The lift is the teacher. Let the prime be ordinary.',
       'A bent knee is still the lesson. Depth is not a grade.',
       'Walk the mind back once, the way you would a child — without a speech.',
-      'A twelve-minute batch is a complete practice. Do not wait for a free hour.',
-      'The flue can hold a worry overnight. You may know where it is and not carry it.',
+      'An eleven-minute canvas is a complete practice. Do not wait for a free hour.',
+      'The primer can hold a worry overnight. You may know where it is and not carry it.',
       'Breathe in the back of the body. The chest does not have to perform.',
-      'Leave one pot unglazed. The kiln is still there.',
+      'Leave one corner unprimed. The attic is still there.',
     ];
     return lessons[now.day % lessons.length];
   }

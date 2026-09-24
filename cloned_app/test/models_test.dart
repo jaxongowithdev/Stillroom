@@ -17,43 +17,43 @@ void main() {
   test('journal survives a map round trip', () {
     const entry = JournalEntry(
       id: 2,
-      mood: 'glaze',
-      prompt: 'Where did the breath catch in the bisque?',
+      mood: 'rose',
+      prompt: 'Where did the breath catch on the canvas?',
       body: 'The right hip after the walk.',
       createdAt: '2026-09-24T10:00:00.000',
     );
     final back = JournalEntry.fromMap(entry.toMap());
-    expect(back.mood, 'glaze');
+    expect(back.mood, 'rose');
     expect(back.body, entry.body);
   });
 
-  test('preferences default to a light eighteen-minute ease glaze', () {
+  test('preferences default to a light seventeen-minute ease wash', () {
     final prefs = UserPreferences();
-    expect(prefs.glaze, 'ease');
-    expect(prefs.minutes, 18);
+    expect(prefs.wash, 'ease');
+    expect(prefs.minutes, 17);
     expect(prefs.theme, 'light');
     expect(prefs.showOnboarding, isTrue);
-    expect(UserPreferences.fromMap(prefs.toMap()).bisque, 'even');
+    expect(UserPreferences.fromMap(prefs.toMap()).tooth, 'even');
   });
 
   test('engine avoids repeating the last session when it can', () {
     const last = PracticeLog(
-      sessionId: 'morning-bisque',
-      title: 'Morning bisque',
-      minutes: 18,
+      sessionId: 'morning-prime',
+      title: 'Morning prime',
+      minutes: 17,
       completedAt: '2026-09-24T07:00:00.000',
     );
-    final pick = PracticeEngine.pickBatch(
-      prefs: UserPreferences(glaze: 'ease', minutes: 18, bisque: 'soft'),
+    final pick = PracticeEngine.pickCanvas(
+      prefs: UserPreferences(wash: 'ease', minutes: 17, tooth: 'fine'),
       recent: const [last],
       now: DateTime(2026, 9, 24, 7, 30),
     );
-    expect(pick.id, isNot('morning-bisque'));
+    expect(pick.id, isNot('morning-prime'));
   });
 
   test('night hour leans toward rest', () {
-    final pick = PracticeEngine.pickBatch(
-      prefs: UserPreferences(glaze: 'sleep', minutes: 18, bisque: 'soft'),
+    final pick = PracticeEngine.pickCanvas(
+      prefs: UserPreferences(wash: 'sleep', minutes: 17, tooth: 'fine'),
       recent: const [],
       now: DateTime(2026, 9, 24, 22, 10),
     );
@@ -61,9 +61,9 @@ void main() {
   });
 
   test('hour greeting changes across the day', () {
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 8)), 'Morning bisque');
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 14)), 'High kiln');
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 19)), 'Dusk ash');
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 23)), 'Night flue');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 8)), 'Morning prime');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 14)), 'High attic');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 19)), 'Dusk wash');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 23)), 'Night gesso');
   });
 }

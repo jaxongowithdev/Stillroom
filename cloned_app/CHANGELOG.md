@@ -1,3 +1,3 @@
-## 1.7.0
+## 1.8.0
 
-Lichen Kiln — sand kiln UI, right rail, twin-vent breath, on-device teacher.
+Gesso Attic — primed canvas UI, top underline rooms, picture-frame breath, on-device teacher.

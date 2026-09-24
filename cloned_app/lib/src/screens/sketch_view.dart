@@ -3,16 +3,15 @@ import '../data/library.dart';
 import '../database/storage_manager.dart';
 import '../models/practice_models.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/kiln_chrome.dart';
 
-class FolioView extends StatefulWidget {
-  const FolioView({super.key});
+class SketchView extends StatefulWidget {
+  const SketchView({super.key});
 
   @override
-  State<FolioView> createState() => _FolioViewState();
+  State<SketchView> createState() => _SketchViewState();
 }
 
-class _FolioViewState extends State<FolioView> {
+class _SketchViewState extends State<SketchView> {
   List<JournalEntry> _entries = [];
 
   @override
@@ -39,7 +38,7 @@ class _FolioViewState extends State<FolioView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 12, 8),
+          padding: const EdgeInsets.fromLTRB(16, 12, 8, 8),
           child: Row(
             children: [
               Expanded(
@@ -58,7 +57,7 @@ class _FolioViewState extends State<FolioView> {
                   child: Padding(
                     padding: const EdgeInsets.all(32),
                     child: Text(
-                      'The folio is blank. Write one honest sentence after a sit — or before sleep.',
+                      'The sketchbook is blank. Write one honest sentence after a sit — or before sleep.',
                       textAlign: TextAlign.center,
                       style: VisualTheme.body(16, color: muted),
                     ),
@@ -67,7 +66,7 @@ class _FolioViewState extends State<FolioView> {
               : ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   itemCount: _entries.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: 8),
+                  separatorBuilder: (context, index) => const SizedBox(height: 1),
                   itemBuilder: (context, i) {
                     final e = _entries[i];
                     final when = DateTime.tryParse(e.createdAt);
@@ -79,16 +78,11 @@ class _FolioViewState extends State<FolioView> {
                         if (e.id != null) await StorageManager.instance.deleteJournal(e.id!);
                         _load();
                       },
-                      background: Container(
-                        decoration: BoxDecoration(
-                          color: VisualTheme.lichen.withValues(alpha: 0.28),
-                          borderRadius: potRadius,
-                        ),
-                      ),
+                      background: Container(color: VisualTheme.rose.withValues(alpha: 0.25)),
                       child: Container(
                         width: double.infinity,
+                        color: VisualTheme.canvasOf(context),
                         padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-                        decoration: BoxDecoration(color: VisualTheme.bisqueOf(context), borderRadius: potRadius),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -117,7 +111,7 @@ class _ComposePage extends StatefulWidget {
 class _ComposePageState extends State<_ComposePage> {
   final _body = TextEditingController();
   late String _prompt;
-  String _mood = 'lichen';
+  String _mood = 'gesso';
 
   @override
   void initState() {
@@ -156,18 +150,15 @@ class _ComposePageState extends State<_ComposePage> {
           Text(_prompt, style: VisualTheme.display(24, color: VisualTheme.inkOf(context))),
           const SizedBox(height: 14),
           Wrap(
-            spacing: 6,
-            runSpacing: 6,
+            spacing: 0,
+            runSpacing: 0,
             children: [
               for (final m in PracticeLibrary.moods)
                 GestureDetector(
                   onTap: () => setState(() => _mood = m),
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: _mood == m ? VisualTheme.lichen : VisualTheme.bisqueOf(context),
-                      borderRadius: BorderRadius.circular(18),
-                    ),
+                    color: _mood == m ? VisualTheme.prussian : VisualTheme.canvasOf(context),
                     child: Text(m.toUpperCase(), style: VisualTheme.micro(8, color: _mood == m ? Colors.white : VisualTheme.inkOf(context))),
                   ),
                 ),
