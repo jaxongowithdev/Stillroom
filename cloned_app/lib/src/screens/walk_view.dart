@@ -5,18 +5,18 @@ import '../database/storage_manager.dart';
 import '../models/practice_models.dart';
 import '../models/user_preferences.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/gesso_chrome.dart';
+import '../widgets/stoa_chrome.dart';
 import 'breath_view.dart';
 import 'session_player_view.dart';
 
-class EaselView extends StatefulWidget {
-  const EaselView({super.key});
+class WalkView extends StatefulWidget {
+  const WalkView({super.key});
 
   @override
-  State<EaselView> createState() => _EaselViewState();
+  State<WalkView> createState() => _WalkViewState();
 }
 
-class _EaselViewState extends State<EaselView> {
+class _WalkViewState extends State<WalkView> {
   UserPreferences? _prefs;
   PracticeSession? _pick;
   int _streak = 0;
@@ -37,7 +37,7 @@ class _EaselViewState extends State<EaselView> {
     if (!mounted) return;
     setState(() {
       _prefs = prefs;
-      _pick = PracticeEngine.pickCanvas(prefs: prefs, recent: logs);
+      _pick = PracticeEngine.pickWalk(prefs: prefs, recent: logs);
       _streak = streak;
       _week = week;
     });
@@ -52,22 +52,22 @@ class _EaselViewState extends State<EaselView> {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
       children: [
-        Text(PracticeEngine.hourGreeting(now).toUpperCase(), style: VisualTheme.micro(9, color: VisualTheme.rose)),
+        Text(PracticeEngine.hourGreeting(now).toUpperCase(), style: VisualTheme.micro(9, color: VisualTheme.fuchsia)),
         const SizedBox(height: 8),
         Text(PracticeEngine.lessonOfDay(now), style: VisualTheme.body(16, color: muted)),
         const SizedBox(height: 16),
         Row(
           children: [
-            _Stat(label: 'Days', value: '$_streak'),
+            _Stat(label: 'Walk', value: '$_streak d'),
             const SizedBox(width: 8),
             _Stat(label: 'Week', value: '$_week'),
             const SizedBox(width: 8),
-            _Stat(label: 'Min', value: '${_prefs?.minutes ?? 17}'),
+            _Stat(label: 'Min', value: '${_prefs?.minutes ?? 19}'),
           ],
         ),
         const SizedBox(height: 16),
         if (pick != null)
-          CanvasCard(
+          BayCard(
             session: pick,
             onTap: () async {
               await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SessionPlayerView(session: pick)));
@@ -87,17 +87,17 @@ class _EaselViewState extends State<EaselView> {
                   await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SessionPlayerView(session: pick)));
                   _load();
                 },
-          child: const Text('Prime this session'),
+          child: const Text('Walk this session'),
         ),
         const SizedBox(height: 22),
-        Text('BREATH FRAMES', style: VisualTheme.micro(9, color: VisualTheme.rose)),
+        Text('BREATH COLUMNS', style: VisualTheme.micro(9, color: VisualTheme.fuchsia)),
         const SizedBox(height: 10),
         ...PracticeLibrary.patterns.map(
           (p) => Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: ListTile(
-              tileColor: VisualTheme.canvasOf(context),
-              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+              tileColor: VisualTheme.bayOf(context),
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
               title: Text(p.name, style: VisualTheme.heading(16, color: VisualTheme.inkOf(context))),
               subtitle: Text('${p.rounds} rounds', style: VisualTheme.body(12, color: muted)),
               onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => BreathView(pattern: p))),
@@ -119,12 +119,12 @@ class _Stat extends StatelessWidget {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
-        color: VisualTheme.canvasOf(context),
+        color: VisualTheme.bayOf(context),
         child: Column(
           children: [
             Text(label.toUpperCase(), style: VisualTheme.micro(7, color: VisualTheme.mutedOf(context))),
             const SizedBox(height: 4),
-            Text(value, style: VisualTheme.heading(16, color: VisualTheme.inkOf(context))),
+            Text(value, style: VisualTheme.heading(15, color: VisualTheme.inkOf(context))),
           ],
         ),
       ),

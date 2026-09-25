@@ -1,46 +1,46 @@
 class UserPreferences {
   final String theme;
-  final String wash; // ease, sleep, stretch, sit
+  final String aspect; // ease, sleep, stretch, sit
   final int minutes;
-  final String tooth; // fine, even, coarse
+  final String grain; // smooth, even, rough
   final bool showOnboarding;
 
   UserPreferences({
     this.theme = 'light',
-    this.wash = 'ease',
-    this.minutes = 17,
-    this.tooth = 'even',
+    this.aspect = 'ease',
+    this.minutes = 19,
+    this.grain = 'even',
     this.showOnboarding = true,
   });
 
   Map<String, dynamic> toMap() => {
         'theme': theme,
-        'wash': wash,
+        'aspect': aspect,
         'minutes': minutes,
-        'tooth': tooth,
+        'grain': grain,
         'showOnboarding': showOnboarding ? 1 : 0,
       };
 
   factory UserPreferences.fromMap(Map<String, dynamic> map) => UserPreferences(
         theme: map['theme'] as String? ?? 'light',
-        wash: map['wash'] as String? ?? 'ease',
-        minutes: map['minutes'] as int? ?? 17,
-        tooth: map['tooth'] as String? ?? 'even',
+        aspect: map['aspect'] as String? ?? 'ease',
+        minutes: map['minutes'] as int? ?? 19,
+        grain: map['grain'] as String? ?? 'even',
         showOnboarding: (map['showOnboarding'] as int? ?? 1) == 1,
       );
 
   UserPreferences copyWith({
     String? theme,
-    String? wash,
+    String? aspect,
     int? minutes,
-    String? tooth,
+    String? grain,
     bool? showOnboarding,
   }) {
     return UserPreferences(
       theme: theme ?? this.theme,
-      wash: wash ?? this.wash,
+      aspect: aspect ?? this.aspect,
       minutes: minutes ?? this.minutes,
-      tooth: tooth ?? this.tooth,
+      grain: grain ?? this.grain,
       showOnboarding: showOnboarding ?? this.showOnboarding,
     );
   }

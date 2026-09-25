@@ -1,7 +1,7 @@
-name: gesso_attic_example
-description: "Gesso Attic - On-device yoga and rest teacher"
+name: pewter_stoa_example
+description: "Pewter Stoa - On-device yoga and rest teacher"
 publish_to: 'none'
-version: 1.8.0+1
+version: 1.9.0+1
 environment:
   sdk: ^3.8.0
 

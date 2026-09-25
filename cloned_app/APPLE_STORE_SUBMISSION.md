@@ -1,7 +1,7 @@
-# Gesso Attic — App Store submission
+# Pewter Stoa — App Store submission
 
-**App Name:** Gesso Attic  
-**Subtitle:** Attic yoga & rest, offline  
-**Version (plugin):** 1.8.0+1
+**App Name:** Pewter Stoa  
+**Subtitle:** Stoa yoga & rest, offline  
+**Version (plugin):** 1.9.0+1
 
 Paste the single-line DESCRIPTION from `meta-data-apple-store.txt`.

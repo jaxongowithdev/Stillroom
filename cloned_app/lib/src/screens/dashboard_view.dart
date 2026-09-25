@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../utils/visual_theme.dart';
-import '../widgets/gesso_chrome.dart';
-import 'canvas_view.dart';
-import 'easel_view.dart';
-import 'primer_view.dart';
-import 'sketch_view.dart';
-import 'wash_view.dart';
+import '../widgets/stoa_chrome.dart';
+import 'plinth_view.dart';
+import 'range_view.dart';
+import 'shade_view.dart';
+import 'tablet_view.dart';
+import 'walk_view.dart';
 
 class DashboardView extends StatefulWidget {
   final VoidCallback onPrefsChanged;
@@ -21,32 +21,31 @@ class DashboardViewState extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GessoWash(
+      body: MistWash(
         child: Column(
           children: [
             SafeArea(
               bottom: false,
-              child: AtticTitle(
-                kicker: 'Gesso Attic',
+              child: StoaTitle(
                 trailing: IconButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => PrimerView(onPrefsChanged: widget.onPrefsChanged)),
+                      MaterialPageRoute(builder: (_) => PlinthView(onPrefsChanged: widget.onPrefsChanged)),
                     );
                   },
-                  icon: Icon(Icons.border_color_outlined, color: VisualTheme.mutedOf(context)),
+                  icon: Icon(Icons.view_column_outlined, color: VisualTheme.mutedOf(context)),
                 ),
               ),
             ),
-            AtticTabs(index: _index, onSelect: (i) => setState(() => _index = i)),
+            StoaColon(index: _index, onSelect: (i) => setState(() => _index = i)),
             Expanded(
               child: IndexedStack(
                 index: _index,
                 children: const [
-                  EaselView(),
-                  CanvasView(),
-                  WashView(),
-                  SketchView(),
+                  WalkView(),
+                  RangeView(),
+                  ShadeView(),
+                  TabletView(),
                 ],
               ),
             ),
