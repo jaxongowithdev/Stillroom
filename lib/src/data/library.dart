@@ -1,24 +1,25 @@
 import '../models/practice_models.dart';
 
 class PracticeLibrary {
-  static const moods = ['pewter', 'fuchsia', 'shade', 'heavy', 'clear'];
+  static const moods = ['clear', 'soft', 'tired', 'bright', 'full'];
 
   static const prompts = [
-    'What did you leave on the plinth before you sat?',
-    'Name the joint that asked for a slower walk.',
-    'A thought that can wait in the shade until morning.',
-    'Where did the breath catch between the columns?',
-    'The shortest range that would have been enough.',
-    'What the feet wanted after the last colonnade.',
-    'A sentence true even if the tablet is never read.',
-    'One bay of the day you can leave unwalked.',
+    'One thing your body did well today.',
+    'Where could you make ten percent more space?',
+    'A thought that can wait until morning.',
+    'What changed when you slowed down?',
+    'The smallest version of care that would help.',
+    'What your feet would choose after a long day.',
+    'A sentence that is true without proving it.',
+    'One thing you can leave unfinished tonight.',
   ];
 
   static const patterns = <BreathPattern>[
     BreathPattern(
       id: 'four-columns',
       name: 'Four columns',
-      teaching: 'Four even drums of a colonnade: rise, hold, settle, rest. Use this when talk is still echoing after you sat down.',
+      teaching:
+          'A square, steady breath: inhale, pause, exhale, pause. Let the four rising bands give your attention one uncomplicated job.',
       phases: [
         BreathPhase(label: 'Rise', seconds: 4),
         BreathPhase(label: 'Hold', seconds: 4),
@@ -28,9 +29,10 @@ class PracticeLibrary {
       rounds: 7,
     ),
     BreathPattern(
-      id: 'stoa-478',
-      name: 'Stoa 4–7–8',
-      teaching: 'A longer settle than rise. Example: already in the shade, six rounds, then stop counting.',
+      id: 'evening-478',
+      name: 'Evening 4–7–8',
+      teaching:
+          'A longer exhale for the end of the day. Take six gentle rounds, then stop counting.',
       phases: [
         BreathPhase(label: 'Rise', seconds: 4),
         BreathPhase(label: 'Hold', seconds: 7),
@@ -41,7 +43,8 @@ class PracticeLibrary {
     BreathPattern(
       id: 'long-range',
       name: 'Long range',
-      teaching: 'Rise four, settle seven. The leaving breath is the walk that steadies the stoa.',
+      teaching:
+          'In for four, out for seven. A simple way to lower the volume after a demanding moment.',
       phases: [
         BreathPhase(label: 'Rise', seconds: 4),
         BreathPhase(label: 'Settle', seconds: 7),
@@ -50,8 +53,9 @@ class PracticeLibrary {
     ),
     BreathPattern(
       id: 'tablet-pulse',
-      name: 'Tablet pulse',
-      teaching: 'Short even counts to wake the ribs. Not a performance — a first line on the tablet.',
+      name: 'Small pulse',
+      teaching:
+          'Short even counts to refresh the ribs. A useful reset before you write a note.',
       phases: [
         BreathPhase(label: 'Rise', seconds: 3),
         BreathPhase(label: 'Settle', seconds: 3),
@@ -65,15 +69,19 @@ class PracticeLibrary {
       id: 'walk-stand',
       name: 'Walk stand',
       aka: 'Tadasana',
-      setup: 'Feet under the hips as if the stoa floor were even. Crown quiet. Soften the knees a coin-width.',
-      breath: 'Quiet nose. Feel the count land behind the sternum, not in the throat.',
-      ifThis: 'If the low back gripes, unlock the knees and drop the tail a degree.',
+      setup:
+          'Feet under the hips as if the stoa floor were even. Crown quiet. Soften the knees a coin-width.',
+      breath:
+          'Quiet nose. Feel the count land behind the sternum, not in the throat.',
+      ifThis:
+          'If the low back gripes, unlock the knees and drop the tail a degree.',
     ),
     PoseCard(
       id: 'column-dog',
       name: 'Column dog',
       aka: 'Adho Mukha Svanasana',
-      setup: 'Hands as wide as the shoulders. Hips high. Pedal the heels. The head hangs like unused shade.',
+      setup:
+          'Hands as wide as the shoulders. Hips high. Pedal the heels. The head hangs like unused shade.',
       breath: 'Longer settle than rise. Let the neck go off-duty.',
       ifThis: 'If wrists complain, come onto fists or drop the elbows.',
     ),
@@ -81,7 +89,8 @@ class PracticeLibrary {
       id: 'child-shade',
       name: 'Child shade',
       aka: 'Balasana',
-      setup: 'Hips toward the heels. Forehead down. Arms forward or along the sides.',
+      setup:
+          'Hips toward the heels. Forehead down. Arms forward or along the sides.',
       breath: 'Let the back widen on the rise. Do not chase depth.',
       ifThis: 'Pad the knees. If the forehead will not land, stack the fists.',
     ),
@@ -89,15 +98,18 @@ class PracticeLibrary {
       id: 'cat-range',
       name: 'Cat range',
       aka: 'Marjaryasana',
-      setup: 'Hands under shoulders, knees under hips. Round and hollow with the walk, not ahead of it.',
-      breath: 'Rise to hollow. Settle to round. The spine is a colonnade, not a contest.',
+      setup:
+          'Hands under shoulders, knees under hips. Round and hollow with the walk, not ahead of it.',
+      breath:
+          'Rise to hollow. Settle to round. The spine is a colonnade, not a contest.',
       ifThis: 'Keep the elbows soft if the shoulders hike.',
     ),
     PoseCard(
       id: 'lunge-fuchsia',
       name: 'Fuchsia lunge',
       aka: 'Anjaneyasana',
-      setup: 'Back knee down. Front knee over the ankle. Hands on the front thigh or the floor.',
+      setup:
+          'Back knee down. Front knee over the ankle. Hands on the front thigh or the floor.',
       breath: 'Rise into the back hip. Settle without collapsing the chest.',
       ifThis: 'Pad the back knee. Shorten the stance before you force the hip.',
     ),
@@ -105,9 +117,11 @@ class PracticeLibrary {
       id: 'pigeon-stoa',
       name: 'Pigeon stoa',
       aka: 'Eka Pada Rajakapotasana prep',
-      setup: 'Front shin as squared as the hip allows. Back leg long. Fold only as far as the breath stays even.',
+      setup:
+          'Front shin as squared as the hip allows. Back leg long. Fold only as far as the breath stays even.',
       breath: 'Settle into the front hip. Rise without bracing the jaw.',
-      ifThis: 'Prop under the front hip so the pelvis does not roll off the bay.',
+      ifThis:
+          'Prop under the front hip so the pelvis does not roll off the bay.',
     ),
     PoseCard(
       id: 'wall-shade',
@@ -123,13 +137,15 @@ class PracticeLibrary {
       aka: 'Supta Matsyendrasana',
       setup: 'On the back. Knees to one side. Arms open like a bay.',
       breath: 'Rise into the open ribs. Settle without yanking the neck.',
-      ifThis: 'Keep both shoulders on the floor. A blanket between the knees is allowed.',
+      ifThis:
+          'Keep both shoulders on the floor. A blanket between the knees is allowed.',
     ),
     PoseCard(
       id: 'sphinx-plinth',
       name: 'Plinth sphinx',
       aka: 'Salamba Bhujangasana',
-      setup: 'Forearms down. Elbows under the shoulders. Legs long, tops of the feet on the floor.',
+      setup:
+          'Forearms down. Elbows under the shoulders. Legs long, tops of the feet on the floor.',
       breath: 'Rise the low belly first. The chest is a bay, not a sail.',
       ifThis: 'Walk the elbows forward if the low back pinches.',
     ),
@@ -137,7 +153,8 @@ class PracticeLibrary {
       id: 'forward-walk',
       name: 'Forward walk',
       aka: 'Uttanasana',
-      setup: 'Feet hip-width. Hinge from the creases. Knees bent as needed. Head hangs.',
+      setup:
+          'Feet hip-width. Hinge from the creases. Knees bent as needed. Head hangs.',
       breath: 'Settle the back of the legs. Rising does not yank you taller.',
       ifThis: 'Bend the knees more than pride.',
     ),
@@ -145,8 +162,10 @@ class PracticeLibrary {
       id: 'still-shade',
       name: 'Still shade',
       aka: 'Savasana',
-      setup: 'On the back. Feet fall open. Palms up. A cloth on the belly is optional ballast.',
-      breath: 'Let the breath become unremarkable, like a stoa you already know.',
+      setup:
+          'On the back. Feet fall open. Palms up. A cloth on the belly is optional ballast.',
+      breath:
+          'Let the breath become unremarkable, like a stoa you already know.',
       ifThis: 'Support the knees if the low back talks.',
     ),
   ];
@@ -154,235 +173,558 @@ class PracticeLibrary {
   static const sessions = <PracticeSession>[
     PracticeSession(
       id: 'morning-walk',
-      title: 'Morning walk',
-      subtitle: 'Open the spine before the first column.',
+      title: 'First light',
+      subtitle: 'A kind start for your back and breath.',
       kind: 'yoga',
       minutes: 19,
       level: 'smooth',
       aims: ['ease', 'sit'],
-      teaching: 'A short stand-and-fold so the day has a first bay. Example: after the curtains, before mail.',
+      teaching: 'A simple sequence for the minutes before your day gets loud.',
       steps: [
-        PracticeStep(title: 'Walk stand', cue: 'Both heels. Jaw unhooked. Crown quiet.', seconds: 55),
-        PracticeStep(title: 'Cat range', cue: 'Ten slow rises and settles. Spine as a colonnade.', seconds: 90),
-        PracticeStep(title: 'Column dog', cue: 'Hips high. Pedal. Neck off-duty.', seconds: 80),
-        PracticeStep(title: 'Fuchsia lunge — right', cue: 'Right foot forward. Breathe into the left hip.', seconds: 70),
-        PracticeStep(title: 'Fuchsia lunge — left', cue: 'Switch. Front knee honest. No contest.', seconds: 70),
-        PracticeStep(title: 'Forward walk', cue: 'Bent knees. Shake the head once yes, once no.', seconds: 50),
-        PracticeStep(title: 'Child shade', cue: 'Forehead down. Six unhurried breaths.', seconds: 70),
-        PracticeStep(title: 'Still shade', cue: 'On the back. Stay until the pewter is quiet.', seconds: 85),
+        PracticeStep(
+          title: 'Walk stand',
+          cue: 'Both heels. Jaw unhooked. Crown quiet.',
+          seconds: 55,
+        ),
+        PracticeStep(
+          title: 'Cat range',
+          cue: 'Ten slow rises and settles. Spine as a colonnade.',
+          seconds: 90,
+        ),
+        PracticeStep(
+          title: 'Column dog',
+          cue: 'Hips high. Pedal. Neck off-duty.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Fuchsia lunge — right',
+          cue: 'Right foot forward. Breathe into the left hip.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Fuchsia lunge — left',
+          cue: 'Switch. Front knee honest. No contest.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Forward walk',
+          cue: 'Bent knees. Shake the head once yes, once no.',
+          seconds: 50,
+        ),
+        PracticeStep(
+          title: 'Child shade',
+          cue: 'Forehead down. Six unhurried breaths.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Still shade',
+          cue: 'On the back. Stay until the pewter is quiet.',
+          seconds: 85,
+        ),
       ],
     ),
     PracticeSession(
       id: 'plinth-unknot',
-      title: 'Plinth unknot',
-      subtitle: 'For a neck used as a peg.',
+      title: 'Desk reset',
+      subtitle: 'A reset for a neck that has done enough.',
       kind: 'mobility',
       minutes: 13,
       level: 'even',
       aims: ['stretch', 'ease'],
-      teaching: 'Seated openers between two tasks. Example: shoes on, thirteen minutes in stoa light.',
+      teaching: 'Small seated openings for the space between two tasks.',
       steps: [
-        PracticeStep(title: 'Ear to capital', cue: 'Right ear to right shoulder. Switch. Slow.', seconds: 70),
-        PracticeStep(title: 'Shoulder clocks', cue: 'Five each way. Blades slide like wet pewter.', seconds: 50),
-        PracticeStep(title: 'Chair twist', cue: 'Sit tall. Open height, settle a millimetre of turn. Both sides.', seconds: 80),
-        PracticeStep(title: 'Chest bay', cue: 'Fingers behind you, or hold the chair. Lift the breastbone.', seconds: 50),
-        PracticeStep(title: 'Wrist tablets', cue: 'Palms together, then the backs. Gentle. These joints type.', seconds: 45),
-        PracticeStep(title: 'Jaw unhook', cue: 'Tongue in the floor of the mouth. Let the hinges hang.', seconds: 40),
-        PracticeStep(title: 'Sit still', cue: 'Hands on the thighs. Three ordinary breaths.', seconds: 45),
+        PracticeStep(
+          title: 'Ear to capital',
+          cue: 'Right ear to right shoulder. Switch. Slow.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Shoulder clocks',
+          cue: 'Five each way. Blades slide like wet pewter.',
+          seconds: 50,
+        ),
+        PracticeStep(
+          title: 'Chair twist',
+          cue:
+              'Sit tall. Open height, settle a millimetre of turn. Both sides.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Chest bay',
+          cue: 'Fingers behind you, or hold the chair. Lift the breastbone.',
+          seconds: 50,
+        ),
+        PracticeStep(
+          title: 'Wrist tablets',
+          cue: 'Palms together, then the backs. Gentle. These joints type.',
+          seconds: 45,
+        ),
+        PracticeStep(
+          title: 'Jaw unhook',
+          cue: 'Tongue in the floor of the mouth. Let the hinges hang.',
+          seconds: 40,
+        ),
+        PracticeStep(
+          title: 'Sit still',
+          cue: 'Hands on the thighs. Three ordinary breaths.',
+          seconds: 45,
+        ),
       ],
     ),
     PracticeSession(
       id: 'hip-range',
-      title: 'Hip range',
-      subtitle: 'Hips that have been sitting like stacked drums.',
+      title: 'Hips, gently',
+      subtitle: 'Make space after a long stretch of sitting.',
       kind: 'yoga',
       minutes: 19,
       level: 'even',
       aims: ['stretch'],
-      teaching: 'Lunges and a pigeon stoa. Example: after a long desk walk.',
+      teaching:
+          'A grounded sequence of lunges and hip release after desk time.',
       steps: [
-        PracticeStep(title: 'Cat range', cue: 'Wake the low back without a speech.', seconds: 50),
-        PracticeStep(title: 'Column dog', cue: 'Pedal until the heels argue less.', seconds: 60),
-        PracticeStep(title: 'Fuchsia lunge — right', cue: 'Sink only as far as the breath stays even.', seconds: 80),
-        PracticeStep(title: 'Pigeon stoa — right', cue: 'Prop the hip. Fold if the jaw stays soft.', seconds: 90),
-        PracticeStep(title: 'Fuchsia lunge — left', cue: 'Same honesty. No matching.', seconds: 80),
-        PracticeStep(title: 'Pigeon stoa — left', cue: 'Stay. The hip is a bay, not a deadline.', seconds: 90),
-        PracticeStep(title: 'Child shade', cue: 'Let both hips drain.', seconds: 70),
-        PracticeStep(title: 'Still shade', cue: 'Knees bent if the back wants a plinth.', seconds: 70),
+        PracticeStep(
+          title: 'Cat range',
+          cue: 'Wake the low back without a speech.',
+          seconds: 50,
+        ),
+        PracticeStep(
+          title: 'Column dog',
+          cue: 'Pedal until the heels argue less.',
+          seconds: 60,
+        ),
+        PracticeStep(
+          title: 'Fuchsia lunge — right',
+          cue: 'Sink only as far as the breath stays even.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Pigeon stoa — right',
+          cue: 'Prop the hip. Fold if the jaw stays soft.',
+          seconds: 90,
+        ),
+        PracticeStep(
+          title: 'Fuchsia lunge — left',
+          cue: 'Same honesty. No matching.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Pigeon stoa — left',
+          cue: 'Stay. The hip is a bay, not a deadline.',
+          seconds: 90,
+        ),
+        PracticeStep(
+          title: 'Child shade',
+          cue: 'Let both hips drain.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Still shade',
+          cue: 'Knees bent if the back wants a plinth.',
+          seconds: 70,
+        ),
       ],
     ),
     PracticeSession(
       id: 'spine-stoa',
-      title: 'Spine stoa',
-      subtitle: 'A gentle walk for a stiff middle.',
+      title: 'Middle back ease',
+      subtitle: 'A gentle sequence for the stiff middle.',
       kind: 'yoga',
       minutes: 19,
       level: 'smooth',
       aims: ['ease', 'stretch'],
-      teaching: 'Cat, twist, and a sphinx that does not perform. Example: mid-afternoon when the chair has won.',
+      teaching:
+          'Cat, twist, and a sphinx that does not perform. Example: mid-afternoon when the chair has won.',
       steps: [
-        PracticeStep(title: 'Walk sit', cue: 'Sit bones even. Lengthen the back of the neck.', seconds: 40),
-        PracticeStep(title: 'Cat range', cue: 'Small range. Quality over theatre.', seconds: 80),
-        PracticeStep(title: 'Thread the needle — right', cue: 'Right arm under. Rest the side of the head.', seconds: 70),
-        PracticeStep(title: 'Thread the needle — left', cue: 'Switch. Same patience.', seconds: 70),
-        PracticeStep(title: 'Plinth sphinx', cue: 'Forearms. Chest as a bay, not a sail.', seconds: 70),
-        PracticeStep(title: 'Tablet twist — right', cue: 'Knees right. Left shoulder stays on the floor.', seconds: 70),
-        PracticeStep(title: 'Tablet twist — left', cue: 'Switch. Breathe into the open ribs.', seconds: 70),
-        PracticeStep(title: 'Still shade', cue: 'Let the spine forget the chair.', seconds: 90),
+        PracticeStep(
+          title: 'Walk sit',
+          cue: 'Sit bones even. Lengthen the back of the neck.',
+          seconds: 40,
+        ),
+        PracticeStep(
+          title: 'Cat range',
+          cue: 'Small range. Quality over theatre.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Thread the needle — right',
+          cue: 'Right arm under. Rest the side of the head.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Thread the needle — left',
+          cue: 'Switch. Same patience.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Plinth sphinx',
+          cue: 'Forearms. Chest as a bay, not a sail.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Tablet twist — right',
+          cue: 'Knees right. Left shoulder stays on the floor.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Tablet twist — left',
+          cue: 'Switch. Breathe into the open ribs.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Still shade',
+          cue: 'Let the spine forget the chair.',
+          seconds: 90,
+        ),
       ],
     ),
     PracticeSession(
       id: 'dusk-shade',
-      title: 'Dusk shade',
-      subtitle: 'A longer fold toward the night colonnade.',
+      title: 'After hours',
+      subtitle: 'Let the day drain out of your shoulders.',
       kind: 'yoga',
       minutes: 27,
       level: 'even',
       aims: ['ease', 'sleep'],
-      teaching: 'Standing fold, hip, and a long still. Example: the hour the stoa cools.',
+      teaching:
+          'Standing fold, hip, and a long still. Example: the hour the stoa cools.',
       steps: [
-        PracticeStep(title: 'Walk stand', cue: 'Feel the floor. Soften the eyes.', seconds: 50),
-        PracticeStep(title: 'Column dog', cue: 'Long settles. Pedal.', seconds: 80),
-        PracticeStep(title: 'Fuchsia lunge — right', cue: 'Hands on the thigh. Jaw off duty.', seconds: 70),
-        PracticeStep(title: 'Fuchsia lunge — left', cue: 'Switch.', seconds: 70),
-        PracticeStep(title: 'Pigeon stoa — right', cue: 'Stay without a story.', seconds: 90),
-        PracticeStep(title: 'Pigeon stoa — left', cue: 'Stay without a story.', seconds: 90),
-        PracticeStep(title: 'Forward walk', cue: 'Knees bent. Hang.', seconds: 70),
-        PracticeStep(title: 'Child shade', cue: 'Forehead down. Six breaths.', seconds: 80),
-        PracticeStep(title: 'Wall shade', cue: 'Legs up a wall or chair. Count nothing.', seconds: 140),
-        PracticeStep(title: 'Still shade', cue: 'Forearm over the eyes if the room is bright.', seconds: 110),
+        PracticeStep(
+          title: 'Walk stand',
+          cue: 'Feel the floor. Soften the eyes.',
+          seconds: 50,
+        ),
+        PracticeStep(
+          title: 'Column dog',
+          cue: 'Long settles. Pedal.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Fuchsia lunge — right',
+          cue: 'Hands on the thigh. Jaw off duty.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Fuchsia lunge — left',
+          cue: 'Switch.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Pigeon stoa — right',
+          cue: 'Stay without a story.',
+          seconds: 90,
+        ),
+        PracticeStep(
+          title: 'Pigeon stoa — left',
+          cue: 'Stay without a story.',
+          seconds: 90,
+        ),
+        PracticeStep(
+          title: 'Forward walk',
+          cue: 'Knees bent. Hang.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Child shade',
+          cue: 'Forehead down. Six breaths.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Wall shade',
+          cue: 'Legs up a wall or chair. Count nothing.',
+          seconds: 140,
+        ),
+        PracticeStep(
+          title: 'Still shade',
+          cue: 'Forearm over the eyes if the room is bright.',
+          seconds: 110,
+        ),
       ],
     ),
     PracticeSession(
       id: 'ham-column',
-      title: 'Hamstring column',
-      subtitle: 'A longer drink after hills.',
+      title: 'Long line',
+      subtitle: 'Give calves and hamstrings a little length.',
       kind: 'yoga',
       minutes: 19,
       level: 'rough',
       aims: ['stretch'],
-      teaching: 'Standing fold and half-splits. Example: the morning after a climb.',
+      teaching:
+          'Standing fold and half-splits. Example: the morning after a climb.',
       steps: [
-        PracticeStep(title: 'Walk stand', cue: 'Four corners of each foot.', seconds: 40),
-        PracticeStep(title: 'Column dog', cue: 'Micro-bend if the knees are noisy.', seconds: 70),
-        PracticeStep(title: 'Half-split — right', cue: 'From a lunge, hips back, front leg long, toes up.', seconds: 80),
-        PracticeStep(title: 'Half-split — left', cue: 'Switch. Same honesty.', seconds: 80),
-        PracticeStep(title: 'Forward walk', cue: 'Hang. Bend more than pride.', seconds: 70),
-        PracticeStep(title: 'Child shade', cue: 'Round. Let the legs rest.', seconds: 55),
-        PracticeStep(title: 'Still shade', cue: 'Knees bent, feet on the floor. Notice the backs of the legs.', seconds: 70),
+        PracticeStep(
+          title: 'Walk stand',
+          cue: 'Four corners of each foot.',
+          seconds: 40,
+        ),
+        PracticeStep(
+          title: 'Column dog',
+          cue: 'Micro-bend if the knees are noisy.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Half-split — right',
+          cue: 'From a lunge, hips back, front leg long, toes up.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Half-split — left',
+          cue: 'Switch. Same honesty.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Forward walk',
+          cue: 'Hang. Bend more than pride.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Child shade',
+          cue: 'Round. Let the legs rest.',
+          seconds: 55,
+        ),
+        PracticeStep(
+          title: 'Still shade',
+          cue: 'Knees bent, feet on the floor. Notice the backs of the legs.',
+          seconds: 70,
+        ),
       ],
     ),
     PracticeSession(
       id: 'body-shade',
-      title: 'Body shade',
-      subtitle: 'A scan from the soles to the quiet crown.',
+      title: 'Body arrival',
+      subtitle: 'A scan from your feet to the quiet top of your head.',
       kind: 'sleep',
       minutes: 19,
       level: 'smooth',
       aims: ['sleep', 'ease'],
-      teaching: 'Lie down. Attention is a walk you lay in each bay. Example: the lamp already off.',
+      teaching:
+          'Lie down. Attention is a walk you lay in each bay. Example: the lamp already off.',
       steps: [
-        PracticeStep(title: 'Arrive', cue: 'Sheet under the heels. Tongue in the floor of the mouth.', seconds: 70),
-        PracticeStep(title: 'Feet and calves', cue: 'Lay the shade. Do not stretch. Notice.', seconds: 80),
-        PracticeStep(title: 'Thighs and hips', cue: 'Heavy bones. If a thought knocks, leave it on the plinth.', seconds: 80),
-        PracticeStep(title: 'Hands and ribs', cue: 'Hands are two warm capitals. Ribs rise without being asked.', seconds: 80),
-        PracticeStep(title: 'Face', cue: 'Unhook the brow. Soften the jaw hinges.', seconds: 70),
-        PracticeStep(title: 'Whole stoa', cue: 'The shade widens until there is no edge. If you sleep, that is the lesson.', seconds: 150),
+        PracticeStep(
+          title: 'Arrive',
+          cue: 'Sheet under the heels. Tongue in the floor of the mouth.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Feet and calves',
+          cue: 'Lay the shade. Do not stretch. Notice.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Thighs and hips',
+          cue: 'Heavy bones. If a thought knocks, leave it on the plinth.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Hands and ribs',
+          cue: 'Hands are two warm capitals. Ribs rise without being asked.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Face',
+          cue: 'Unhook the brow. Soften the jaw hinges.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Whole stoa',
+          cue:
+              'The shade widens until there is no edge. If you sleep, that is the lesson.',
+          seconds: 150,
+        ),
       ],
     ),
     PracticeSession(
       id: 'count-bays',
-      title: 'Count the bays',
-      subtitle: 'Count the leaving breath until the room blurs.',
+      title: 'Count down',
+      subtitle: 'Count the exhale until the room gets quieter.',
       kind: 'sleep',
       minutes: 13,
       level: 'smooth',
       aims: ['sleep'],
-      teaching: 'Count only the settles from 18 down. Lose the number? Begin at 18 without a speech.',
+      teaching:
+          'Count only the settles from 18 down. Lose the number? Begin at 18 without a speech.',
       steps: [
-        PracticeStep(title: 'Lie down', cue: 'One pillow. The ceiling is not a task.', seconds: 45),
-        PracticeStep(title: 'Count eighteen', cue: 'Each settle is a number. If a story starts, return to the last number you trust.', seconds: 160),
-        PracticeStep(title: 'Count ten', cue: 'Slower. Misshapen numbers are fine.', seconds: 130),
-        PracticeStep(title: 'No count', cue: 'Stay with cool air at the nostrils, or sleep.', seconds: 100),
+        PracticeStep(
+          title: 'Lie down',
+          cue: 'One pillow. The ceiling is not a task.',
+          seconds: 45,
+        ),
+        PracticeStep(
+          title: 'Count eighteen',
+          cue:
+              'Each settle is a number. If a story starts, return to the last number you trust.',
+          seconds: 160,
+        ),
+        PracticeStep(
+          title: 'Count ten',
+          cue: 'Slower. Misshapen numbers are fine.',
+          seconds: 130,
+        ),
+        PracticeStep(
+          title: 'No count',
+          cue: 'Stay with cool air at the nostrils, or sleep.',
+          seconds: 100,
+        ),
       ],
     ),
     PracticeSession(
       id: 'plinth-worry',
-      title: 'Worry on the plinth',
-      subtitle: 'Park one thought so the night can use the room.',
+      title: 'Set it down',
+      subtitle: 'Park one thought so night has more room.',
       kind: 'sit',
       minutes: 13,
       level: 'smooth',
       aims: ['sit', 'sleep'],
-      teaching: 'Name one worry and set it on a plinth. Example: before the phone in bed.',
+      teaching:
+          'Name one worry and set it on a plinth. Example: before the phone in bed.',
       steps: [
-        PracticeStep(title: 'Sit', cue: 'Chair or bed edge. Both feet down. Hands on the thighs.', seconds: 40),
-        PracticeStep(title: 'Name one', cue: 'Let one worry step forward. A label, not a speech.', seconds: 70),
-        PracticeStep(title: 'Plinth', cue: 'Place it. You know where it is. It can wait.', seconds: 80),
-        PracticeStep(title: 'Breath in the belly', cue: 'Breath low. If it climbs, walk it back once.', seconds: 120),
-        PracticeStep(title: 'Close', cue: 'Open the eyes. You do not have to carry it to the pillow.', seconds: 50),
+        PracticeStep(
+          title: 'Sit',
+          cue: 'Chair or bed edge. Both feet down. Hands on the thighs.',
+          seconds: 40,
+        ),
+        PracticeStep(
+          title: 'Name one',
+          cue: 'Let one worry step forward. A label, not a speech.',
+          seconds: 70,
+        ),
+        PracticeStep(
+          title: 'Plinth',
+          cue: 'Place it. You know where it is. It can wait.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Breath in the belly',
+          cue: 'Breath low. If it climbs, walk it back once.',
+          seconds: 120,
+        ),
+        PracticeStep(
+          title: 'Close',
+          cue: 'Open the eyes. You do not have to carry it to the pillow.',
+          seconds: 50,
+        ),
       ],
     ),
     PracticeSession(
       id: 'sound-stoa',
-      title: 'Sound stoa',
-      subtitle: 'Hear what is already between the columns.',
+      title: 'Open ear',
+      subtitle: 'Listen to what is already here.',
       kind: 'sit',
       minutes: 13,
       level: 'even',
       aims: ['sit'],
-      teaching: 'Open-ear sitting. Example: a noisy afternoon when silence is not for sale.',
+      teaching:
+          'Open-ear sitting. Example: a noisy afternoon when silence is not for sale.',
       steps: [
-        PracticeStep(title: 'Sit', cue: 'Eyes soft. Shoulders drop a centimetre.', seconds: 40),
-        PracticeStep(title: 'Near', cue: 'The closest noise. Do not name it twice.', seconds: 80),
-        PracticeStep(title: 'Far', cue: 'Let the stoa widen. Equal status. Nothing to fix.', seconds: 90),
-        PracticeStep(title: 'One walk', cue: 'Stop sorting. Stay.', seconds: 110),
-        PracticeStep(title: 'Return', cue: 'Feel the sit bones. Open the eyes.', seconds: 40),
+        PracticeStep(
+          title: 'Sit',
+          cue: 'Eyes soft. Shoulders drop a centimetre.',
+          seconds: 40,
+        ),
+        PracticeStep(
+          title: 'Near',
+          cue: 'The closest noise. Do not name it twice.',
+          seconds: 80,
+        ),
+        PracticeStep(
+          title: 'Far',
+          cue: 'Let the stoa widen. Equal status. Nothing to fix.',
+          seconds: 90,
+        ),
+        PracticeStep(
+          title: 'One walk',
+          cue: 'Stop sorting. Stay.',
+          seconds: 110,
+        ),
+        PracticeStep(
+          title: 'Return',
+          cue: 'Feel the sit bones. Open the eyes.',
+          seconds: 40,
+        ),
       ],
     ),
     PracticeSession(
       id: 'legs-plinth',
-      title: 'Legs on the plinth',
-      subtitle: 'A short inversion for tired feet.',
+      title: 'Feet up',
+      subtitle: 'A small inversion for tired feet.',
       kind: 'sleep',
       minutes: 13,
       level: 'smooth',
       aims: ['ease', 'sleep'],
       teaching: 'Wall or chair. Example: after standing in a kitchen.',
       steps: [
-        PracticeStep(title: 'Set up', cue: 'Pad under the pelvis if the back wants it.', seconds: 40),
-        PracticeStep(title: 'Stay', cue: 'Arms rest. Thighs heavy toward the sockets.', seconds: 260),
-        PracticeStep(title: 'Roll', cue: 'Bend the knees, roll to one side, sit slowly.', seconds: 50),
+        PracticeStep(
+          title: 'Set up',
+          cue: 'Pad under the pelvis if the back wants it.',
+          seconds: 40,
+        ),
+        PracticeStep(
+          title: 'Stay',
+          cue: 'Arms rest. Thighs heavy toward the sockets.',
+          seconds: 260,
+        ),
+        PracticeStep(
+          title: 'Roll',
+          cue: 'Bend the knees, roll to one side, sit slowly.',
+          seconds: 50,
+        ),
       ],
     ),
     PracticeSession(
       id: 'four-sit',
-      title: 'Four-column sit',
-      subtitle: 'Seven counted rounds, then quiet.',
+      title: 'Four-count seat',
+      subtitle: 'Seven even rounds, then quiet.',
       kind: 'breath',
       minutes: 13,
       level: 'even',
       aims: ['sit', 'ease'],
-      teaching: 'Box breath with a short sit after. Example: before a hard conversation.',
+      teaching:
+          'Box breath with a short sit after. Example: before a hard conversation.',
       steps: [
-        PracticeStep(title: 'Find the seat', cue: 'Lengthen the back of the neck. Soft eyes.', seconds: 30),
-        PracticeStep(title: 'Seven columns', cue: 'Rise 4, hold 4, settle 4, rest 4. Shorten the hold if it pinches.', seconds: 170),
-        PracticeStep(title: 'Free breath', cue: 'Drop the count. Notice whether the mind has a wall.', seconds: 80),
+        PracticeStep(
+          title: 'Find the seat',
+          cue: 'Lengthen the back of the neck. Soft eyes.',
+          seconds: 30,
+        ),
+        PracticeStep(
+          title: 'Seven columns',
+          cue:
+              'Rise 4, hold 4, settle 4, rest 4. Shorten the hold if it pinches.',
+          seconds: 170,
+        ),
+        PracticeStep(
+          title: 'Free breath',
+          cue: 'Drop the count. Notice whether the mind has a wall.',
+          seconds: 80,
+        ),
       ],
     ),
     PracticeSession(
       id: 'night-shade',
-      title: 'Night shade',
-      subtitle: '4–7–8 until the edges blur.',
+      title: 'Night rhythm',
+      subtitle: '4–7–8 for a softer edge to the day.',
       kind: 'breath',
       minutes: 13,
       level: 'smooth',
       aims: ['sleep'],
-      teaching: 'The night ratio, taught as a walk leaving the colonnade. Example: head already on the pillow.',
+      teaching:
+          'The night ratio, taught as a walk leaving the colonnade. Example: head already on the pillow.',
       steps: [
-        PracticeStep(title: 'Lie or sit', cue: 'Whichever lets the belly move.', seconds: 30),
-        PracticeStep(title: 'Six stoas', cue: 'Rise 4, hold 7, settle 8. Mouth on the leaving breath if the nose is busy.', seconds: 180),
-        PracticeStep(title: 'Ordinary', cue: 'Stop counting. Stay in the dark of the room.', seconds: 70),
+        PracticeStep(
+          title: 'Lie or sit',
+          cue: 'Whichever lets the belly move.',
+          seconds: 30,
+        ),
+        PracticeStep(
+          title: 'Six stoas',
+          cue:
+              'Rise 4, hold 7, settle 8. Mouth on the leaving breath if the nose is busy.',
+          seconds: 180,
+        ),
+        PracticeStep(
+          title: 'Ordinary',
+          cue: 'Stop counting. Stay in the dark of the room.',
+          seconds: 70,
+        ),
       ],
     ),
     PracticeSession(
@@ -393,11 +735,24 @@ class PracticeLibrary {
       minutes: 13,
       level: 'smooth',
       aims: ['ease', 'sit'],
-      teaching: 'Rise four, settle seven. Example: after news that left the ribs high.',
+      teaching:
+          'Rise four, settle seven. Example: after news that left the ribs high.',
       steps: [
-        PracticeStep(title: 'Sit', cue: 'Hands on the lower ribs. Feel them widen.', seconds: 40),
-        PracticeStep(title: 'Nine ranges', cue: 'Rise four. Settle seven. Jaw soft on every leaving.', seconds: 160),
-        PracticeStep(title: 'Quiet', cue: 'Let the ratio go. Stay with whatever breath remains.', seconds: 100),
+        PracticeStep(
+          title: 'Sit',
+          cue: 'Hands on the lower ribs. Feel them widen.',
+          seconds: 40,
+        ),
+        PracticeStep(
+          title: 'Nine ranges',
+          cue: 'Rise four. Settle seven. Jaw soft on every leaving.',
+          seconds: 160,
+        ),
+        PracticeStep(
+          title: 'Quiet',
+          cue: 'Let the ratio go. Stay with whatever breath remains.',
+          seconds: 100,
+        ),
       ],
     ),
   ];

@@ -1,5 +1,5 @@
 name: user_screen
-description: "Pewter Stoa - An on-device yoga and meditation teacher. Personalized sessions, breathing, sleep, and a private journal — fully offline. No account. No cloud."
+description: "Stillroom - A private, on-device movement, breath, rest, and journal teacher. Fully offline. No account. No cloud."
 version: 1.9.0+1
 
 environment:

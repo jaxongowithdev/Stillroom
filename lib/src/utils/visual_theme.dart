@@ -1,190 +1,180 @@
 import 'package:flutter/material.dart';
 
-/// Pewter Stoa — cool gray colonnade, fuchsia capital.
-/// Four column rooms across the top, tall bay cards, rising columns for breath.
-/// Not gesso attic, not kiln, not dock, not cream cloth, not stone cairn, not night lamp.
+/// Stillroom uses a warm paper palette and rounded, welcoming surfaces.
 class VisualTheme {
-  static const Color mist = Color(0xFFEEF0F2);
-  static const Color bay = Color(0xFFF8F9FA);
-  static const Color pewter = Color(0xFF5C636A);
-  static const Color ink = Color(0xFF16191C);
-  static const Color fuchsia = Color(0xFFC23B6E);
-  static const Color muted = Color(0xFF6E757C);
-  static const Color rule = Color(0xFFD5D8DC);
-
-  static const Color night = Color(0xFF121416);
-  static const Color nightBay = Color(0xFF1C2024);
-  static const Color nightInk = Color(0xFFEEF0F2);
-  static const Color nightMuted = Color(0xFF9AA1A8);
-
+  static const mist = Color(0xFFFFF7F1),
+      bay = Color(0xFFFFFFFF),
+      pewter = Color(0xFF315C6D),
+      ink = Color(0xFF21334A),
+      fuchsia = Color(0xFFE8755B),
+      muted = Color(0xFF657487),
+      rule = Color(0xFFEBDDD2),
+      sky = Color(0xFFD7ECF2),
+      apricot = Color(0xFFFFD5A6);
+  static const night = Color(0xFF172536),
+      nightBay = Color(0xFF22354A),
+      nightInk = Color(0xFFFFF4EA),
+      nightMuted = Color(0xFFBAC6D1);
   static Color bayOf(BuildContext c) =>
       Theme.of(c).brightness == Brightness.dark ? nightBay : bay;
-
   static Color mistOf(BuildContext c) =>
       Theme.of(c).brightness == Brightness.dark ? night : mist;
-
   static Color inkOf(BuildContext c) =>
       Theme.of(c).brightness == Brightness.dark ? nightInk : ink;
-
   static Color mutedOf(BuildContext c) =>
       Theme.of(c).brightness == Brightness.dark ? nightMuted : muted;
-
-  static TextStyle display(double size, {Color? color, FontWeight w = FontWeight.w400}) =>
-      TextStyle(
-        fontFamily: 'sans-serif',
-        fontSize: size,
-        fontWeight: w,
-        height: 1.12,
-        letterSpacing: 0.4,
-        color: color,
-      );
-
-  static TextStyle heading(double size, {Color? color, FontWeight w = FontWeight.w500}) =>
-      TextStyle(
-        fontFamily: 'sans-serif',
-        fontSize: size,
-        fontWeight: w,
-        height: 1.28,
-        letterSpacing: 0.15,
-        color: color,
-      );
-
-  static TextStyle body(double size, {Color? color, FontWeight w = FontWeight.w400}) =>
-      TextStyle(fontFamily: 'sans-serif', fontSize: size, fontWeight: w, height: 1.48, color: color);
-
-  static TextStyle micro(double size, {Color? color, FontWeight w = FontWeight.w600}) =>
-      TextStyle(
-        fontFamily: 'sans-serif',
-        fontSize: size,
-        fontWeight: w,
-        letterSpacing: 2.0,
-        height: 1.15,
-        color: color,
-      );
-
-  static ThemeData get lightTheme => _build(Brightness.light, mist, bay, ink, muted, fuchsia, Colors.white);
-  static ThemeData get darkTheme => _build(Brightness.dark, night, nightBay, nightInk, nightMuted, fuchsia, night);
-
+  static TextStyle display(
+    double s, {
+    Color? color,
+    FontWeight w = FontWeight.w700,
+  }) => TextStyle(
+    fontFamily: 'sans-serif',
+    fontSize: s,
+    fontWeight: w,
+    height: 1.06,
+    letterSpacing: -.7,
+    color: color,
+  );
+  static TextStyle heading(
+    double s, {
+    Color? color,
+    FontWeight w = FontWeight.w700,
+  }) => TextStyle(
+    fontFamily: 'sans-serif',
+    fontSize: s,
+    fontWeight: w,
+    height: 1.22,
+    letterSpacing: -.15,
+    color: color,
+  );
+  static TextStyle body(
+    double s, {
+    Color? color,
+    FontWeight w = FontWeight.w400,
+  }) => TextStyle(
+    fontFamily: 'sans-serif',
+    fontSize: s,
+    fontWeight: w,
+    height: 1.45,
+    color: color,
+  );
+  static TextStyle micro(
+    double s, {
+    Color? color,
+    FontWeight w = FontWeight.w700,
+  }) => TextStyle(
+    fontFamily: 'sans-serif',
+    fontSize: s,
+    fontWeight: w,
+    letterSpacing: 1.25,
+    height: 1.15,
+    color: color,
+  );
+  static ThemeData get lightTheme =>
+      _build(Brightness.light, mist, bay, ink, muted, fuchsia, Colors.white);
+  static ThemeData get darkTheme => _build(
+    Brightness.dark,
+    night,
+    nightBay,
+    nightInk,
+    nightMuted,
+    fuchsia,
+    night,
+  );
   static ThemeData _build(
     Brightness brightness,
     Color scaffold,
     Color surface,
-    Color inkColor,
-    Color mutedColor,
+    Color text,
+    Color subdued,
     Color primary,
     Color onPrimary,
   ) {
-    final dark = brightness == Brightness.dark;
-    final scheme = ColorScheme.fromSeed(
-      seedColor: fuchsia,
-      brightness: brightness,
-      primary: primary,
-      secondary: pewter,
-      surface: surface,
-    );
-    const bayRadius = BorderRadius.all(Radius.circular(2));
+    const radius = BorderRadius.all(Radius.circular(24));
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
-      colorScheme: scheme,
       scaffoldBackgroundColor: scaffold,
-      splashFactory: InkRipple.splashFactory,
-      textTheme: (dark ? ThemeData.dark().textTheme : ThemeData.light().textTheme)
-          .apply(bodyColor: inkColor, displayColor: inkColor),
-      cardTheme: CardThemeData(
-        elevation: 0,
-        color: surface,
-        margin: EdgeInsets.zero,
-        shape: const RoundedRectangleBorder(borderRadius: bayRadius),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: primary,
+        brightness: brightness,
+        primary: primary,
+        secondary: pewter,
+        surface: surface,
       ),
+      textTheme:
+          (brightness == Brightness.dark
+                  ? ThemeData.dark().textTheme
+                  : ThemeData.light().textTheme)
+              .apply(bodyColor: text, displayColor: text),
       appBarTheme: AppBarTheme(
-        centerTitle: false,
+        backgroundColor: Colors.transparent,
+        foregroundColor: text,
         elevation: 0,
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.transparent,
-        foregroundColor: inkColor,
-        titleTextStyle: heading(17, color: inkColor),
+        titleTextStyle: heading(18, color: text),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: surface,
-        labelStyle: body(14, color: mutedColor),
-        hintStyle: body(14, color: mutedColor.withValues(alpha: 0.7)),
-        border: const OutlineInputBorder(borderRadius: bayRadius, borderSide: BorderSide.none),
-        enabledBorder: const OutlineInputBorder(borderRadius: bayRadius, borderSide: BorderSide.none),
-        focusedBorder: OutlineInputBorder(borderRadius: bayRadius, borderSide: BorderSide(color: primary, width: 1.2)),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        hintStyle: body(14, color: subdued),
+        border: const OutlineInputBorder(
+          borderRadius: radius,
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: radius,
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: radius,
+          borderSide: BorderSide(color: primary, width: 1.5),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 18,
+          vertical: 16,
+        ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           backgroundColor: primary,
           foregroundColor: onPrimary,
-          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
-          textStyle: const TextStyle(fontFamily: 'sans-serif', fontWeight: FontWeight.w600, fontSize: 14, letterSpacing: 0.5),
-        ),
-      ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          foregroundColor: primary,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          side: BorderSide(color: primary.withValues(alpha: 0.5)),
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
-        ),
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          foregroundColor: primary,
-          textStyle: const TextStyle(fontFamily: 'sans-serif', fontWeight: FontWeight.w600, fontSize: 13, letterSpacing: 1.3),
+          minimumSize: const Size(64, 54),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(18)),
+          ),
+          textStyle: const TextStyle(
+            fontFamily: 'sans-serif',
+            fontWeight: FontWeight.w700,
+            fontSize: 15,
+          ),
         ),
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
-        backgroundColor: inkColor,
-        contentTextStyle: body(14, color: dark ? night : mist),
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
-      ),
-      dialogTheme: DialogThemeData(
-        backgroundColor: surface,
-        shape: const RoundedRectangleBorder(borderRadius: bayRadius),
-        titleTextStyle: heading(20, color: inkColor),
-        contentTextStyle: body(15, color: mutedColor),
+        backgroundColor: text,
+        contentTextStyle: body(14, color: mist),
+        shape: const RoundedRectangleBorder(borderRadius: radius),
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(color: primary),
     );
   }
 
-  static const aspects = ['ease', 'sleep', 'stretch', 'sit'];
-  static const grains = ['smooth', 'even', 'rough'];
-  static const minuteChoices = [13, 19, 27];
-
-  static String aspectLabel(String aspect) {
-    switch (aspect) {
-      case 'sleep':
-        return 'Sleep';
-      case 'stretch':
-        return 'Stretch';
-      case 'sit':
-        return 'Sit';
-      default:
-        return 'Ease';
-    }
-  }
-
-  static Color kindTint(String kind) {
-    switch (kind) {
-      case 'yoga':
-        return fuchsia;
-      case 'breath':
-        return pewter;
-      case 'sleep':
-        return ink;
-      case 'sit':
-        return const Color(0xFF7A4A62);
-      case 'mobility':
-        return const Color(0xFF6A7A4A);
-      default:
-        return muted;
-    }
-  }
+  static const aspects = ['ease', 'sleep', 'stretch', 'sit'],
+      grains = ['smooth', 'even', 'rough'],
+      minuteChoices = [13, 19, 27];
+  static String aspectLabel(String a) => switch (a) {
+    'sleep' => 'Sleep',
+    'stretch' => 'Stretch',
+    'sit' => 'Sit',
+    _ => 'Ease',
+  };
+  static Color kindTint(String k) => switch (k) {
+    'yoga' => fuchsia,
+    'breath' => pewter,
+    'sleep' => ink,
+    'sit' => const Color(0xFF9271A8),
+    'mobility' => const Color(0xFF4E8E83),
+    _ => muted,
+  };
 }

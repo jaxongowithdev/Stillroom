@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../database/storage_manager.dart';
 import '../models/user_preferences.dart';
 import '../utils/visual_theme.dart';
@@ -32,7 +33,7 @@ class _UserScreenState extends State<UserScreen> {
         _ready = true;
       });
     } catch (e, st) {
-      debugPrint('Pewter Stoa boot: $e\n$st');
+      debugPrint('Stillroom boot: $e\n$st');
       setState(() {
         _prefs = UserPreferences();
         _ready = true;
@@ -58,7 +59,7 @@ class _UserScreenState extends State<UserScreen> {
     }
 
     return MaterialApp(
-      title: 'Pewter Stoa',
+      title: 'Stillroom',
       debugShowCheckedModeBanner: false,
       theme: VisualTheme.lightTheme,
       darkTheme: VisualTheme.darkTheme,
@@ -85,9 +86,15 @@ class _Boot extends StatelessWidget {
           children: [
             const ColumnWalk(t: 0.7, color: VisualTheme.fuchsia),
             const SizedBox(height: 22),
-            Text('PEWTER STOA', style: VisualTheme.micro(11, color: VisualTheme.fuchsia)),
+            Text(
+              'STILLROOM',
+              style: VisualTheme.micro(11, color: VisualTheme.apricot),
+            ),
             const SizedBox(height: 8),
-            Text('Raising the first column…', style: VisualTheme.body(15, color: VisualTheme.mist)),
+            Text(
+              'Opening a quiet room…',
+              style: VisualTheme.body(15, color: VisualTheme.mist),
+            ),
           ],
         ),
       ),
@@ -113,7 +120,12 @@ class _WelcomeViewState extends State<WelcomeView> {
     final storage = StorageManager.instance;
     final current = await storage.getPreferences();
     await storage.savePreferences(
-      current.copyWith(aspect: _aspect, minutes: _minutes, grain: _grain, showOnboarding: false),
+      current.copyWith(
+        aspect: _aspect,
+        minutes: _minutes,
+        grain: _grain,
+        showOnboarding: false,
+      ),
     );
     widget.onFinished();
   }
@@ -130,50 +142,91 @@ class _WelcomeViewState extends State<WelcomeView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('PEWTER STOA', style: VisualTheme.micro(11, color: VisualTheme.fuchsia)),
+                Text(
+                  'STILLROOM  ·  YOUR OFFLINE TEACHER',
+                  style: VisualTheme.micro(10, color: VisualTheme.fuchsia),
+                ),
                 const Spacer(),
                 if (_page == 0) ...[
-                  Text('A walk\nyou can keep.', style: VisualTheme.display(36, color: ink)),
+                  Text(
+                    'Make a little\nroom for yourself.',
+                    style: VisualTheme.display(36, color: ink),
+                  ),
                   const SizedBox(height: 16),
                   Text(
-                    'Personalized sessions, breathing, sleep, and a private journal — fully offline. No account. No cloud.',
+                    'A private teacher for movement, breath, rest and reflection. It lives entirely on your device — no account, cloud or remote AI.',
                     style: VisualTheme.body(16, color: muted),
                   ),
                 ] else if (_page == 1) ...[
-                  Text('What should the walk hold?', style: VisualTheme.display(30, color: ink)),
+                  Text(
+                    'What would help\nright now?',
+                    style: VisualTheme.display(30, color: ink),
+                  ),
                   const SizedBox(height: 16),
                   ...[
-                    ('ease', 'Ease', 'Unhook the day from the shoulders.'),
-                    ('sleep', 'Sleep', 'A walk you can set down in the shade.'),
-                    ('stretch', 'Stretch', 'Hips, spine, a plinth unknot.'),
-                    ('sit', 'Sit', 'Count, park a worry, hear the columns.'),
-                  ].map((g) => _Bay(label: g.$2, detail: g.$3, selected: _aspect == g.$1, onTap: () => setState(() => _aspect = g.$1))),
+                    ('ease', 'Ease', 'A gentler pace for a busy day.'),
+                    ('sleep', 'Sleep', 'A softer landing before bed.'),
+                    (
+                      'stretch',
+                      'Stretch',
+                      'Give the desk-bound places some space.',
+                    ),
+                    ('sit', 'Sit', 'Settle, count, and begin again.'),
+                  ].map(
+                    (g) => _Bay(
+                      label: g.$2,
+                      detail: g.$3,
+                      selected: _aspect == g.$1,
+                      onTap: () => setState(() => _aspect = g.$1),
+                    ),
+                  ),
                 ] else if (_page == 2) ...[
-                  Text('How many minutes?', style: VisualTheme.display(30, color: ink)),
+                  Text(
+                    'How much time\ncan we borrow?',
+                    style: VisualTheme.display(30, color: ink),
+                  ),
                   const SizedBox(height: 16),
                   ...VisualTheme.minuteChoices.map(
                     (m) => _Bay(
                       label: '$m minutes',
-                      detail: m == 13 ? 'Four columns, a short sit.' : m == 19 ? 'A full range or a body scan.' : 'Room for dusk shade.',
+                      detail: m == 13
+                          ? 'A meaningful pause, even on a full day.'
+                          : m == 19
+                              ? 'Enough time to move and settle.'
+                              : 'A longer, unhurried practice.',
                       selected: _minutes == m,
                       onTap: () => setState(() => _minutes = m),
                     ),
                   ),
                 ] else ...[
-                  Text('How does the grain feel?', style: VisualTheme.display(30, color: ink)),
+                  Text(
+                    'How is your\nenergy today?',
+                    style: VisualTheme.display(30, color: ink),
+                  ),
                   const SizedBox(height: 16),
                   ...[
-                    ('smooth', 'Smooth', 'Keep strong shapes off the walk.'),
-                    ('even', 'Even', 'Most days, a middle range.'),
-                    ('rough', 'Rough', 'Hills yesterday are welcome.'),
-                  ].map((g) => _Bay(label: g.$2, detail: g.$3, selected: _grain == g.$1, onTap: () => setState(() => _grain = g.$1))),
+                    ('smooth', 'Tender', 'Keep things simple and kind.'),
+                    ('even', 'Steady', 'A balanced place to begin.'),
+                    ('rough', 'Ready', 'You have some energy to explore.'),
+                  ].map(
+                    (g) => _Bay(
+                      label: g.$2,
+                      detail: g.$3,
+                      selected: _grain == g.$1,
+                      onTap: () => setState(() => _grain = g.$1),
+                    ),
+                  ),
                 ],
                 const Spacer(),
                 Row(
                   children: [
-                    Text('${_page + 1}  ·  4', style: VisualTheme.micro(10, color: muted)),
+                    Text(
+                      '${_page + 1}  ·  4',
+                      style: VisualTheme.micro(10, color: muted),
+                    ),
                     const Spacer(),
-                    FilledButton(
+                    Flexible(
+                        child: FilledButton(
                       onPressed: () {
                         if (_page < 3) {
                           setState(() => _page += 1);
@@ -181,8 +234,8 @@ class _WelcomeViewState extends State<WelcomeView> {
                           _finish();
                         }
                       },
-                      child: Text(_page < 3 ? 'Next' : 'Enter the stoa'),
-                    ),
+                      child: Text(_page < 3 ? 'Continue' : 'Enter Stillroom'),
+                    )),
                   ],
                 ),
               ],
@@ -199,7 +252,12 @@ class _Bay extends StatelessWidget {
   final String detail;
   final bool selected;
   final VoidCallback onTap;
-  const _Bay({required this.label, required this.detail, required this.selected, required this.onTap});
+  const _Bay({
+    required this.label,
+    required this.detail,
+    required this.selected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -213,14 +271,30 @@ class _Bay extends StatelessWidget {
           color: VisualTheme.bayOf(context),
           child: Row(
             children: [
-              Container(width: 6, height: 36, color: selected ? VisualTheme.fuchsia : Colors.transparent),
+              Container(
+                width: 6,
+                height: 36,
+                color: selected ? VisualTheme.fuchsia : Colors.transparent,
+              ),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(label, style: VisualTheme.heading(17, color: VisualTheme.inkOf(context))),
-                    Text(detail, style: VisualTheme.body(13, color: VisualTheme.mutedOf(context))),
+                    Text(
+                      label,
+                      style: VisualTheme.heading(
+                        17,
+                        color: VisualTheme.inkOf(context),
+                      ),
+                    ),
+                    Text(
+                      detail,
+                      style: VisualTheme.body(
+                        13,
+                        color: VisualTheme.mutedOf(context),
+                      ),
+                    ),
                   ],
                 ),
               ),

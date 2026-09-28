@@ -1,17 +1,32 @@
 APP NAME (max 30)
-Pewter Stoa
+Stillroom
 
 SUBTITLE (max 30)
-Stoa yoga & rest, offline
+Move, breathe & rest offline
 
 SHORT DESCRIPTION
-A calm yoga and meditation teacher on your phone. Personalized sessions, breathing, sleep, and a private journal — fully offline. No account. No cloud.
+A private teacher for movement, breath, rest and reflection. Fully offline. No account. No cloud.
 
 KEYWORDS (max 100)
-yoga,breath,meditation,journal,sleep,mindfulness,offline,stretch,relax,stoa
+yoga,breath,meditation,journal,sleep,mindfulness,offline,stretch,relax,movement
 
 PROMOTIONAL TEXT (max 170)
-Walk yoga, breath, and sleep in this phone, plus a private journal — fully offline. No account. No cloud.
+Make a little room for yourself. Guided movement, steady breathing, restful evenings and a private journal — fully offline. No account. No cloud.
 
 DESCRIPTION
-Pewter Stoa is a personal wellness learning system that teaches yoga, breathing, mindfulness, meditation, relaxation, flexibility, and steady daily routines - privately, on your device. After you install the app, it keeps working with Airplane Mode on. There is no account, no login, no cloud sync, and no remote AI. It is not just a meditation timer. You get a colonnade of practice you can walk without a subscription or a signal: personalized sessions, breathing, sleep, and a private journal — fully offline. No account. No cloud. Stoa is an on-device teacher that picks a session from your aspect (ease, sleep, stretch, or sit), how many minutes you have, how the grain feels, the hour, and what you already practiced. You get a daily lesson, a streak, and minutes this week. Timed yoga and mobility sequences come with teaching cues: Morning walk, Plinth unknot, Hip range, Spine stoa, Dusk shade, Hamstring column. Breath walks use four rising columns: Four columns, Stoa 4–7–8, Long range, Tablet pulse. Night practices for bed include Body shade, Count the bays, Worry on the plinth, and Legs on the plinth. Pose bays offer short lessons covering setup, breath, and if a joint objects. Tablet is a private journal — fully offline. Notes stay on this iPhone. Nothing is uploaded. Choose day mist or night shade, or match the phone. Open Walk. Read the lesson of the hour. Walk the session the teacher chose, or open Range and pick your own. Each step has a title, a cue, and a timer. Hold or skip. When the last step ends, the session is filed in a private log on this iPhone. Breathing is four columns that rise and settle — not a remote coach video. Sleep practices are written for a dark room. If you fall asleep during a body shade, that is the practice. There is no account, no login, no cloud sync, and no remote AI. Teaching copy ships inside the app. Your tablet notes, preferences, and practice log live in local storage. There is no camera and no tracking in this product. Good for anyone who wants yoga, breath, and rest without a feed, a login, or a cloud.
+Stillroom is your private, fully offline teacher for movement, breath, rest and reflection. All lessons are included on your device. There is no account, no login, no cloud sync and no remote AI.
+
+START WITH YOUR DAY
+Complete a short onboarding to choose what you need, how much time you have and your energy level. Walk recommends a session using these preferences, the time of day and your recent practice. Read a daily lesson and see your practice streak and minutes this week.
+
+MOVE WITH GUIDANCE
+Explore Range for yoga, mobility, breathing and seated practices. First light, Desk reset, Hips, gently and Middle back ease offer timed steps with written teaching cues. Pause or skip a step as needed. Short pose lessons explain setup, breathing and adjustments.
+
+FIND A STEADY RHYTHM
+Follow Four columns with four animated rising bands, or choose Evening 4–7–8, Long range or Small pulse. On-screen phase labels, counts and rounds guide each breathing practice.
+
+MAKE ROOM FOR REST
+Open Rest for quiet practices such as Body arrival, Count down, Set it down and Feet up. Choose Morning light, Quiet night or a theme that matches your device.
+
+KEEP A PRIVATE TABLET
+Write a reflection in Tablet and tap Save note. Notes, preferences and practice history are stored locally on this device. Your journal remains fully offline. No account. No cloud.

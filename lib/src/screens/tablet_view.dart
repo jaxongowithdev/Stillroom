@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../database/storage_manager.dart';
 import '../models/practice_models.dart';
 import '../utils/visual_theme.dart';
@@ -37,8 +38,8 @@ class _TabletViewState extends State<TabletView> {
     if (text.isEmpty) return;
     await StorageManager.instance.insertJournal(
       JournalEntry(
-        mood: 'pewter',
-        prompt: 'walk',
+        mood: 'clear',
+        prompt: 'stillroom-note',
         body: text,
         createdAt: DateTime.now().toIso8601String(),
       ),
@@ -61,25 +62,33 @@ class _TabletViewState extends State<TabletView> {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
       children: [
         Text(
-          'A private journal — fully offline. Notes stay on this tablet.',
+          'Your private journal. Every note stays only on this device — no account, no cloud.',
           style: VisualTheme.body(15, color: muted),
         ),
         const SizedBox(height: 12),
         TextField(
           controller: _controller,
           maxLines: 4,
-          decoration: const InputDecoration(hintText: 'What did the walk hold today?'),
+          decoration: const InputDecoration(
+            hintText: 'What do you want to remember from this moment?',
+          ),
         ),
         const SizedBox(height: 10),
         Align(
           alignment: Alignment.centerRight,
-          child: FilledButton(onPressed: _save, child: const Text('Carve note')),
+          child: FilledButton(onPressed: _save, child: const Text('Save note')),
         ),
         const SizedBox(height: 18),
-        Text('TABLET', style: VisualTheme.micro(9, color: VisualTheme.fuchsia)),
+        Text(
+          'YOUR NOTES',
+          style: VisualTheme.micro(9, color: VisualTheme.fuchsia),
+        ),
         const SizedBox(height: 8),
         if (_rows.isEmpty)
-          Text('No marks yet. The stone is still blank.', style: VisualTheme.body(14, color: muted)),
+          Text(
+            'Nothing saved yet. This is a good place to begin.',
+            style: VisualTheme.body(14, color: muted),
+          ),
         ..._rows.map(
           (e) => Padding(
             padding: const EdgeInsets.only(bottom: 8),

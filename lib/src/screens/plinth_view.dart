@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../database/storage_manager.dart';
 import '../models/user_preferences.dart';
 import '../utils/visual_theme.dart';
@@ -38,13 +39,16 @@ class _PlinthViewState extends State<PlinthView> {
     final ink = VisualTheme.inkOf(context);
     final muted = VisualTheme.mutedOf(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Plinth')),
+      appBar: AppBar(title: const Text('Your room')),
       body: prefs == null
           ? const Center(child: CircularProgressIndicator())
           : ListView(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
               children: [
-                Text('WALK ASPECT', style: VisualTheme.micro(9, color: VisualTheme.fuchsia)),
+                Text(
+                  'WHAT YOU NEED',
+                  style: VisualTheme.micro(9, color: VisualTheme.fuchsia),
+                ),
                 const SizedBox(height: 8),
                 ...[
                   ('ease', 'Ease'),
@@ -59,7 +63,10 @@ class _PlinthViewState extends State<PlinthView> {
                   ),
                 ),
                 const SizedBox(height: 18),
-                Text('MINUTES', style: VisualTheme.micro(9, color: VisualTheme.fuchsia)),
+                Text(
+                  'MINUTES',
+                  style: VisualTheme.micro(9, color: VisualTheme.fuchsia),
+                ),
                 const SizedBox(height: 8),
                 ...VisualTheme.minuteChoices.map(
                   (m) => _Pick(
@@ -69,7 +76,10 @@ class _PlinthViewState extends State<PlinthView> {
                   ),
                 ),
                 const SizedBox(height: 18),
-                Text('GRAIN', style: VisualTheme.micro(9, color: VisualTheme.fuchsia)),
+                Text(
+                  'TODAY’S ENERGY',
+                  style: VisualTheme.micro(9, color: VisualTheme.fuchsia),
+                ),
                 const SizedBox(height: 8),
                 ...[
                   ('smooth', 'Smooth'),
@@ -83,12 +93,15 @@ class _PlinthViewState extends State<PlinthView> {
                   ),
                 ),
                 const SizedBox(height: 18),
-                Text('LIGHT', style: VisualTheme.micro(9, color: VisualTheme.fuchsia)),
+                Text(
+                  'LIGHT',
+                  style: VisualTheme.micro(9, color: VisualTheme.fuchsia),
+                ),
                 const SizedBox(height: 8),
                 ...[
-                  ('system', 'Follow the colonnade'),
-                  ('light', 'Day mist'),
-                  ('dark', 'Night shade'),
+                  ('system', 'Match my device'),
+                  ('light', 'Morning light'),
+                  ('dark', 'Quiet night'),
                 ].map(
                   (g) => _Pick(
                     label: g.$2,
@@ -98,11 +111,14 @@ class _PlinthViewState extends State<PlinthView> {
                 ),
                 const SizedBox(height: 22),
                 Text(
-                  'Pewter Stoa keeps every walk, tablet note, and preference on this device. There is no account, no login, no cloud sync, and no remote AI.',
+                  'Stillroom keeps your preferences, practice history and notes on this device. There is no account, login, cloud sync or remote AI.',
                   style: VisualTheme.body(14, color: muted),
                 ),
                 const SizedBox(height: 12),
-                Text('v1.9.0', style: VisualTheme.micro(9, color: ink)),
+                Text(
+                  'STILLROOM  ·  OFFLINE BY DESIGN',
+                  style: VisualTheme.micro(9, color: ink),
+                ),
               ],
             ),
     );
@@ -113,7 +129,11 @@ class _Pick extends StatelessWidget {
   final String label;
   final bool selected;
   final VoidCallback onTap;
-  const _Pick({required this.label, required this.selected, required this.onTap});
+  const _Pick({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +147,19 @@ class _Pick extends StatelessWidget {
           color: VisualTheme.bayOf(context),
           child: Row(
             children: [
-              Container(width: 6, height: 22, color: selected ? VisualTheme.fuchsia : Colors.transparent),
+              Container(
+                width: 6,
+                height: 22,
+                color: selected ? VisualTheme.fuchsia : Colors.transparent,
+              ),
               const SizedBox(width: 12),
-              Text(label, style: VisualTheme.heading(16, color: VisualTheme.inkOf(context))),
+              Text(
+                label,
+                style: VisualTheme.heading(
+                  16,
+                  color: VisualTheme.inkOf(context),
+                ),
+              ),
             ],
           ),
         ),

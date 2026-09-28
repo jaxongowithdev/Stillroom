@@ -1,4 +1,4 @@
-/// Pewter Stoa — offline yoga, breath, sleep, and a private journal.
+/// Stillroom — an offline movement, breath, rest, and private journal teacher.
 library;
 
 export 'src/screens/user_screen.dart';

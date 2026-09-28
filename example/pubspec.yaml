@@ -1,5 +1,5 @@
 name: pewter_stoa_example
-description: "Pewter Stoa - On-device yoga and rest teacher"
+description: "Stillroom - Private offline movement and rest teacher"
 publish_to: 'none'
 version: 1.9.0+1
 environment:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../data/engine.dart';
 import '../data/library.dart';
 import '../database/storage_manager.dart';
@@ -52,17 +53,23 @@ class _WalkViewState extends State<WalkView> {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
       children: [
-        Text(PracticeEngine.hourGreeting(now).toUpperCase(), style: VisualTheme.micro(9, color: VisualTheme.fuchsia)),
+        Text(
+          '${PracticeEngine.hourGreeting(now).toUpperCase()}  ·  WALK',
+          style: VisualTheme.micro(9, color: VisualTheme.fuchsia),
+        ),
         const SizedBox(height: 8),
-        Text(PracticeEngine.lessonOfDay(now), style: VisualTheme.body(16, color: muted)),
+        Text(
+          PracticeEngine.lessonOfDay(now),
+          style: VisualTheme.body(16, color: muted),
+        ),
         const SizedBox(height: 16),
         Row(
           children: [
-            _Stat(label: 'Walk', value: '$_streak d'),
+            _Stat(label: 'Days', value: '$_streak'),
             const SizedBox(width: 8),
-            _Stat(label: 'Week', value: '$_week'),
+            _Stat(label: 'This week', value: '$_week m'),
             const SizedBox(width: 8),
-            _Stat(label: 'Min', value: '${_prefs?.minutes ?? 19}'),
+            _Stat(label: 'Today', value: '${_prefs?.minutes ?? 19} m'),
           ],
         ),
         const SizedBox(height: 16),
@@ -70,37 +77,64 @@ class _WalkViewState extends State<WalkView> {
           BayCard(
             session: pick,
             onTap: () async {
-              await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SessionPlayerView(session: pick)));
+              await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => SessionPlayerView(session: pick),
+                ),
+              );
               _load();
             },
           ),
         if (pick != null)
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Text(pick.teaching, style: VisualTheme.body(14, color: muted)),
+            child: Text(
+              pick.teaching,
+              style: VisualTheme.body(14, color: muted),
+            ),
           ),
         const SizedBox(height: 14),
         FilledButton(
           onPressed: pick == null
               ? null
               : () async {
-                  await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SessionPlayerView(session: pick)));
+                  await Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => SessionPlayerView(session: pick),
+                    ),
+                  );
                   _load();
                 },
-          child: const Text('Walk this session'),
+          child: const Text('Begin today’s Walk'),
         ),
         const SizedBox(height: 22),
-        Text('BREATH COLUMNS', style: VisualTheme.micro(9, color: VisualTheme.fuchsia)),
+        Text(
+          'BREATHE WITH A RHYTHM',
+          style: VisualTheme.micro(9, color: VisualTheme.fuchsia),
+        ),
         const SizedBox(height: 10),
         ...PracticeLibrary.patterns.map(
           (p) => Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: ListTile(
               tileColor: VisualTheme.bayOf(context),
-              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
-              title: Text(p.name, style: VisualTheme.heading(16, color: VisualTheme.inkOf(context))),
-              subtitle: Text('${p.rounds} rounds', style: VisualTheme.body(12, color: muted)),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => BreathView(pattern: p))),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(2)),
+              ),
+              title: Text(
+                p.name,
+                style: VisualTheme.heading(
+                  16,
+                  color: VisualTheme.inkOf(context),
+                ),
+              ),
+              subtitle: Text(
+                '${p.rounds} rounds',
+                style: VisualTheme.body(12, color: muted),
+              ),
+              onTap: () => Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (_) => BreathView(pattern: p))),
             ),
           ),
         ),
@@ -122,9 +156,15 @@ class _Stat extends StatelessWidget {
         color: VisualTheme.bayOf(context),
         child: Column(
           children: [
-            Text(label.toUpperCase(), style: VisualTheme.micro(7, color: VisualTheme.mutedOf(context))),
+            Text(
+              label.toUpperCase(),
+              style: VisualTheme.micro(7, color: VisualTheme.mutedOf(context)),
+            ),
             const SizedBox(height: 4),
-            Text(value, style: VisualTheme.heading(15, color: VisualTheme.inkOf(context))),
+            Text(
+              value,
+              style: VisualTheme.heading(15, color: VisualTheme.inkOf(context)),
+            ),
           ],
         ),
       ),

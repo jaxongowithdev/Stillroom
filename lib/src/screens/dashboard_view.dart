@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../utils/visual_theme.dart';
 import '../widgets/stoa_chrome.dart';
 import 'plinth_view.dart';
@@ -30,14 +31,23 @@ class DashboardViewState extends State<DashboardView> {
                 trailing: IconButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => PlinthView(onPrefsChanged: widget.onPrefsChanged)),
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            PlinthView(onPrefsChanged: widget.onPrefsChanged),
+                      ),
                     );
                   },
-                  icon: Icon(Icons.view_column_outlined, color: VisualTheme.mutedOf(context)),
+                  icon: Icon(
+                    Icons.tune_rounded,
+                    color: VisualTheme.mutedOf(context),
+                  ),
                 ),
               ),
             ),
-            StoaColon(index: _index, onSelect: (i) => setState(() => _index = i)),
+            StoaColon(
+              index: _index,
+              onSelect: (i) => setState(() => _index = i),
+            ),
             Expanded(
               child: IndexedStack(
                 index: _index,

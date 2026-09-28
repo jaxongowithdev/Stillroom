@@ -61,9 +61,9 @@ void main() {
   });
 
   test('hour greeting changes across the day', () {
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 8)), 'Morning walk');
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 14)), 'High range');
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 19)), 'Dusk shade');
-    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 23)), 'Night colonnade');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 8)), 'Good morning');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 14)), 'A little reset');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 19)), 'Ease into evening');
+    expect(PracticeEngine.hourGreeting(DateTime(2026, 1, 1, 23)), 'Good night');
   });
 }
